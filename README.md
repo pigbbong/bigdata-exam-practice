@@ -8,10 +8,8 @@
 <details>
 <summary><h2>📌 문제 목록 보기</h2></summary>
 
-**1.** <h3 style="font-weight:normal;">
-각 연도별로 사망률이 가장 높은 질병명을 구하고,<br>
-해당 질병들의 사망자수 평균을 소수점 첫번째 자리에서 반올림하여 구하시오.
-</h3>
+<h3 style="font-weight:normal;">1. 각 연도별로 사망률이 가장 높은 질병명을 구하고,<br>
+해당 질병들의 사망자수 평균을 소수점 첫번째 자리에서 반올림하여 구하시오.</h3>
 <p><i>(사망률 = 사망자수 / 환자수)</i></p>
 
 <details>
@@ -28,9 +26,10 @@ answer
 </details>
 
 
-**2.** <h3 style="font-weight:normal;">
-도시 거주자 중 60세 이상 남성의 평균 의료비를 구하시오.
-</h3>
+<br><br><br><br>
+
+
+<h3 style="font-weight:normal;">2. 도시 거주자 중 60세 이상 남성의 평균 의료비를 구하시오.</h3>
 
 <details>
 <summary>코드</summary>
@@ -40,6 +39,9 @@ answer = target['의료비'].mean()
 <br>
 answer
 </details>
+
+
+<br><br><br><br>
 
 
 **3.** <h3 style="font-weight:normal;">

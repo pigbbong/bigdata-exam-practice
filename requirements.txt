@@ -1,4 +1,4 @@
-numpy version: 1.25.0
-pandas version: 2.2.2
-scipy version: 1.14.0
-scikit-learn version: 1.5.1
+numpy==1.25.0
+pandas==2.2.2
+scipy==1.14.0
+scikit-learn==1.5.1

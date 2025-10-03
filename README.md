@@ -13,11 +13,13 @@
 <details>
 
 <summary>코드</summary>
+```
 df['사망률'] = df['사망자수'] / df['환자수']
 
 target = df.groupby('연도')['사망률'].idxmax().values
 answer = round(df[df.index.isin(target)]['사망자수'].mean())
 answer
+```
 </details>
 
 

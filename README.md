@@ -582,12 +582,25 @@ answer1
 
 <details>
 <summary>코드</summary>
+<span style="color:gray;"># 방법 1: crosstab 사용</span><br>
+cdf = pd.crosstab(df['고객ID'], df['리뷰작성'], dropna=False).fillna(0)<br>
+cdf['리뷰비율'] = cdf[1] / (cdf[0] + cdf[1])<br>
+answer1 = len(cdf[cdf['리뷰비율'] >= 0.7])<br>
+print("고객 수(방법1):", answer1)<br><br>
+
+<span style="color:gray;"># 방법 2: groupby agg 사용</span><br>
 review_stats = df.groupby('고객ID')['리뷰작성'].agg(['sum', 'count']).reset_index()<br>
 review_stats['리뷰비율'] = review_stats['sum'] / review_stats['count']<br>
-answer = len(review_stats[review_stats['리뷰비율'] >= 0.7])<br>
-print("고객 수:", answer)
-</details>
+answer2 = len(review_stats[review_stats['리뷰비율'] >= 0.7])<br>
+print("고객 수(방법2):", answer2)<br><br>
 
+<span style="color:gray;"># 방법 3: pivot_table 사용</span><br>
+pivot = df.pivot_table(index='고객ID', values='리뷰작성', aggfunc=['sum', 'count']).reset_index()<br>
+pivot.columns = ['고객ID', 'sum', 'count']<br>
+pivot['리뷰비율'] = pivot['sum'] / pivot['count']<br>
+answer3 = len(pivot[pivot['리뷰비율'] >= 0.7])<br>
+print("고객 수(방법3):", answer3)
+</details>
 
 <br><br><br><br>
 

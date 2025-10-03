@@ -6,7 +6,7 @@
 # 📝 1유형
 
 <details>
-<summary>문제 목록 보기</summary>
+<summary><h2>📌 문제 목록 보기</h2></summary>
 
 **1.** 
 <br>

@@ -202,25 +202,24 @@ answer
 
 <details>
 <summary>코드</summary>
-# 구매금액이 결측치인 행 대치
-df['구매금액'] = df['구매금액'].fillna(df.groupby(['연도', '고객ID', '카테고리'])['구매금액'].transform('mean'))
+<span style="color:gray;"># 구매금액이 결측치인 행 대치</span><br>
+df['구매금액'] = df['구매금액'].fillna(df.groupby(['연도', '고객ID', '카테고리'])['구매금액'].transform('mean'))<br><br>
 
-# 평균 구매금액 값도 결측치인 행 대치
-df['구매금액'] = df['구매금액'].fillna(df['구매금액'].mean())
+<span style="color:gray;"># 평균 구매금액 값도 결측치인 행 대치</span><br>
+df['구매금액'] = df['구매금액'].fillna(df['구매금액'].mean())<br><br>
 
-# 월별 총 구매금액 먼저 구하기
-monthly_sum = df.groupby(['고객ID', '연도', '월'])['구매금액'].sum().reset_index()
+<span style="color:gray;"># 월별 총 구매금액 먼저 구하기</span><br>
+monthly_sum = df.groupby(['고객ID', '연도', '월'])['구매금액'].sum().reset_index()<br><br>
 
-# 다시 연도별 총 구매금액 계산
-grouped = monthly_sum.groupby(['고객ID', '연도'])['구매금액'].sum().reset_index()
+<span style="color:gray;"># 다시 연도별 총 구매금액 계산</span><br>
+grouped = monthly_sum.groupby(['고객ID', '연도'])['구매금액'].sum().reset_index()<br><br>
 
-target = grouped[grouped['연도'] == 2023]['구매금액'].quantile(0.9)
-answer = grouped[(grouped['연도'] == 2023) & (grouped['구매금액'] >= target)]['고객ID'].values.tolist()
+target = grouped[grouped['연도'] == 2023]['구매금액'].quantile(0.9)<br>
+answer = grouped[(grouped['연도'] == 2023) & (grouped['구매금액'] >= target)]['고객ID'].values.tolist()<br><br>
 
-print("조건에 맞는 고객들:")
-for i in range(len(answer)):
-    print(answer[i])
-
+print("조건에 맞는 고객들:")<br>
+for i in range(len(answer)):<br>
+&nbsp;&nbsp;print(answer[i])<br><br>
 
 print("\n조건에 맞는 고객 수:", len(answer))
 </details>
@@ -230,22 +229,22 @@ print("\n조건에 맞는 고객 수:", len(answer))
 
 <h3 style="font-weight:normal;">11-1.</h3>
 <h3 style="font-weight:normal;">
-연령대(20대, 30대, 40대, 50대, 60대 이상)를 구분하는 연령대 컬럼을 만들고, 각 연령대별로 콜레스테롤 평균을 계산하시오. 
+연령대(20대, 30대, 40대, 50대, ...)를 구분하는 연령대 컬럼을 만들고, 각 연령대별로 콜레스테롤 평균을 계산하시오. 
 (단, 콜레스테롤 결측치는 같은 지역 내 연령대 평균으로 채울 것. (평균값도 결측이면 전체 평균으로 채움))
 최종 출력은 연령대, 평균 콜레스테롤 형태로 출력하시오.
 </h3>
 
 <details>
 <summary>코드</summary>
-df['연령대'] = (df['연령'] // 10 * 10).astype(str) + '대'
+df['연령대'] = (df['연령'] // 10 * 10).astype(str) + '대'<br><br>
 
-# 지역, 연령대 기준으로 콜레스테롤 각 결측치 대치
-df['콜레스테롤'] = df['콜레스테롤'].fillna(df.groupby(['연령대', '지역'])['콜레스테롤'].transform('mean'))
+<span style="color:gray;"># 지역, 연령대 기준으로 콜레스테롤 각 결측치 대치</span><br>
+df['콜레스테롤'] = df['콜레스테롤'].fillna(df.groupby(['연령대', '지역'])['콜레스테롤'].transform('mean'))<br><br>
 
-# 아직도 콜레스테롤이 결측치인 값은 콜레스테롤 전체 평균으로 대치
-df['콜레스테롤'] = df['콜레스테롤'].fillna(df['콜레스테롤'].mean())
+<span style="color:gray;"># 아직도 결측치인 값은 전체 평균으로 대치</span><br>
+df['콜레스테롤'] = df['콜레스테롤'].fillna(df['콜레스테롤'].mean())<br><br>
 
-answer = df.groupby('연령대')['콜레스테롤'].mean().reset_index()
+answer = df.groupby('연령대')['콜레스테롤'].mean().reset_index()<br>
 answer
 </details>
 
@@ -260,16 +259,16 @@ answer
 
 <details>
 <summary>코드</summary>
-from scipy.stats import zscore
+from scipy.stats import zscore<br><br>
 
-df['혈당'] = df['혈당'].fillna(df['혈당'].mean())
-target_col = ['혈압', '혈당', '콜레스테롤']
-change_col_name = ['혈압_zscore', '혈당_zscore', '콜레스테롤_zscore']
+df['혈당'] = df['혈당'].fillna(df['혈당'].mean())<br>
+target_col = ['혈압', '혈당', '콜레스테롤']<br>
+change_col_name = ['혈압_zscore', '혈당_zscore', '콜레스테롤_zscore']<br><br>
 
-for new_col, col in zip(change_col_name, target_col):
-    df[new_col] = zscore(df[col])
+for new_col, col in zip(change_col_name, target_col):<br>
+&nbsp;&nbsp;df[new_col] = zscore(df[col])<br><br>
 
-answer = len(df[df['혈압_zscore'] > 1.5])
+answer = len(df[df['혈압_zscore'] > 1.5])<br>
 answer
 </details>
 
@@ -284,10 +283,10 @@ answer
 
 <details>
 <summary>코드</summary>
-df['주문금액'] = df['주문금액'].fillna(df.groupby(['카테고리', '성별'])['주문금액'].transform('mean'))
-df['주문금액'] = df['주문금액'].fillna(df['주문금액'].mean())
+df['주문금액'] = df['주문금액'].fillna(df.groupby(['카테고리', '성별'])['주문금액'].transform('mean'))<br>
+df['주문금액'] = df['주문금액'].fillna(df['주문금액'].mean())<br><br>
 
-answer = df.groupby(['카테고리', '성별'])['주문금액'].mean().reset_index()
+answer = df.groupby(['카테고리', '성별'])['주문금액'].mean().reset_index()<br>
 display(answer)
 </details>
 
@@ -302,11 +301,11 @@ display(answer)
 
 <details>
 <summary>코드</summary>
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler<br><br>
 
-minmax = MinMaxScaler()
+minmax = MinMaxScaler()<br><br>
 
-df['구매수량_scaled'] = minmax.fit_transform(df[['구매수량']])
+df['구매수량_scaled'] = minmax.fit_transform(df[['구매수량']])<br>
 print(len(df[df['구매수량_scaled'] >= 0.9]))
 </details>
 
@@ -321,10 +320,10 @@ print(len(df[df['구매수량_scaled'] >= 0.9]))
 
 <details>
 <summary>코드</summary>
-target = df[df['불만제기여부'] == 1].groupby("고객ID")['고객ID'].unique().index.tolist()
-df['불만제기경험여부'] = df['고객ID'].apply(lambda x: 'Y' if x in target else 'N')
+target = df[df['불만제기여부'] == 1].groupby("고객ID")['고객ID'].unique().index.tolist()<br>
+df['불만제기경험여부'] = df['고객ID'].apply(lambda x: 'Y' if x in target else 'N')<br><br>
 
-answer = df[(df['연도'] == 2023) & (df['불만제기경험여부'] == 'Y')]['고객ID'].nunique()
+answer = df[(df['연도'] == 2023) & (df['불만제기경험여부'] == 'Y')]['고객ID'].nunique()<br>
 answer
 </details>
 
@@ -339,11 +338,13 @@ answer
 
 <details>
 <summary>코드</summary>
-df['연령대'] = df['나이'].apply(lambda x: str(60) + '대 이상' if x >= 60 else str(x // 10 * 10) + '대')
-answer = df.groupby('연령대')[['주문수량', '주문금액']].mean().reset_index()
+df['연령대'] = df['나이'].apply(lambda x: str(60) + '대 이상' if x >= 60 else str(x // 10 * 10) + '대')<br>
+answer = df.groupby('연령대')[['주문수량', '주문금액']].mean().reset_index()<br>
 display(answer)
 </details>
 
+
+<br><br><br><br>
 
 <br><br><br><br>
 

@@ -15,9 +15,18 @@
 
 <details>
 <summary>코드</summary>
-target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]
-answer = target['의료비'].mean()
-answer
+<span style="color:gray;"># 전년도 연봉 추가 (부서별 shift)</span><br>
+df['전년도연봉'] = df.groupby('부서')['연봉'].shift(1)<br><br>
+
+<span style="color:gray;"># 인상률 계산</span><br>
+df['인상률'] = (df['연봉'] - df['전년도연봉']) / df['전년도연봉']<br><br>
+
+<span style="color:gray;"># 각 부서별 인상률의 표준편차 계산</span><br>
+std_by_dept = df.groupby('부서')['인상률'].std()<br><br>
+
+<span style="color:gray;"># 인상률의 표준편차가 가장 작은 부서</span><br>
+answer = std_by_dept.idxmin()<br>
+print("가장 일정한 인상률을 가진 부서:", answer)
 </details>
 
 

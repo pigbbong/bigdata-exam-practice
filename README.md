@@ -26,4 +26,16 @@ answer
 </details>
 
 
+2. 도시 거주자 중 60세 이상 남성의 평균 의료비를 구하시오.
+
+<details>
+<summary>코드</summary>
+target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]
+<br>
+answer = target['의료비'].mean()
+<br>
+answer
+  
+</details>
+
 </details>

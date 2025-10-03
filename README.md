@@ -31,8 +31,9 @@ answer
 
 <details>
 <summary>코드</summary>
-target = df.sort_values(by=['연도', '매출'], ascending=[False, False]).groupby('연도').head(2)['매출'].sum()
-target
+target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]<br>
+answer = target['의료비'].mean()<br>
+answer
 </details>
 
 
@@ -45,7 +46,7 @@ target
 
 <details>
 <summary>코드</summary>
-target = df.sort_values(by=['연도', '매출'], ascending=[False, False]).groupby('연도').head(2)['매출'].sum()
+target = df.sort_values(by=['연도', '매출'], ascending=[False, False]).groupby('연도').head(2)['매출'].sum()<br>
 target
 </details>
 
@@ -59,9 +60,9 @@ target
 
 <details>
 <summary>코드</summary>
-df['월'] = pd.to_datetime(df['월'])
-df['month'] = df['월'].dt.month
-target = df[df['누적재고'] > 5000]['month'].iloc[0]
+df['월'] = pd.to_datetime(df['월'])<br>
+df['month'] = df['월'].dt.month<br>
+target = df[df['누적재고'] > 5000]['month'].iloc[0]<br>
 target
 </details>
 
@@ -78,17 +79,17 @@ target
 
 <details>
 <summary>코드</summary>
-# 전년도 연봉 추가 (부서별 shift)
-df['전년도연봉'] = df.groupby('부서')['연봉'].shift(1)
+<span style="color:gray;"># 전년도 연봉 추가 (부서별 shift)</span><br>
+df['전년도연봉'] = df.groupby('부서')['연봉'].shift(1)<br><br>
 
-# 인상률 계산
-df['인상률'] = (df['연봉'] - df['전년도연봉']) / df['전년도연봉']
+<span style="color:gray;"># 인상률 계산</span><br>
+df['인상률'] = (df['연봉'] - df['전년도연봉']) / df['전년도연봉']<br><br>
 
-# 각 부서별 인상률의 표준편차 계산
-std_by_dept = df.groupby('부서')['인상률'].std()
+<span style="color:gray;"># 각 부서별 인상률의 표준편차 계산</span><br>
+std_by_dept = df.groupby('부서')['인상률'].std()<br><br>
 
-# 인상률의 표준편차가 가장 작은 부서
-answer = std_by_dept.idxmin()
+<span style="color:gray;"># 인상률의 표준편차가 가장 작은 부서</span><br>
+answer = std_by_dept.idxmin()<br>
 print("가장 일정한 인상률을 가진 부서:", answer)
 </details>
 
@@ -102,7 +103,7 @@ print("가장 일정한 인상률을 가진 부서:", answer)
 
 <details>
 <summary>코드</summary>
-answer = round(df[(df['거주지'] == '도시') & (df['연령'] >= 60) & (df['성별'] == '여성')]['방문횟수'].mean(), 2)
+answer = round(df[(df['거주지'] == '도시') & (df['연령'] >= 60) & (df['성별'] == '여성')]['방문횟수'].mean(), 2)<br>
 answer
 </details>
 
@@ -116,19 +117,18 @@ answer
 
 <details>
 <summary>코드</summary>
-# 연도-질병별 전체 환자수와 사망자 수 계산
-df_rate = df.groupby(['연도', '질병']).agg(
-    사망자수=('사망여부', 'sum'),
-    인원수=('사망여부', 'count')
-).reset_index()
+<span style="color:gray;"># 연도-질병별 전체 환자수와 사망자 수 계산</span><br>
+df_rate = df.groupby(['연도', '질병']).agg(<br>
+&nbsp;&nbsp;사망자수=('사망여부', 'sum'),<br>
+&nbsp;&nbsp;인원수=('사망여부', 'count')<br>
+).reset_index()<br><br>
 
-# 사망률 계산
-df_rate['사망률'] = df_rate['사망자수'] / df_rate['인원수']
+<span style="color:gray;"># 사망률 계산</span><br>
+df_rate['사망률'] = df_rate['사망자수'] / df_rate['인원수']<br><br>
 
-# 연도별 최고 사망률 질병 추출
-answer = df_rate.sort_values(['연도', '사망률'], ascending=[True, False]) \
-                .groupby('연도').head(1)[['연도', '질병', '사망률']].reset_index(drop=True)
-
+<span style="color:gray;"># 연도별 최고 사망률 질병 추출</span><br>
+answer = df_rate.sort_values(['연도', '사망률'], ascending=[True, False]) \ <br>
+&nbsp;&nbsp;.groupby('연도').head(1)[['연도', '질병', '사망률']].reset_index(drop=True)<br>
 display(answer)
 </details>
 
@@ -142,9 +142,9 @@ display(answer)
 
 <details>
 <summary>코드</summary>
-df_rate = df.groupby(['연도', '상품']).agg(반품된건수=('반품여부', 'sum'), 리뷰건수=('반품여부', 'size')).reset_index()
-df_rate['반품률'] = df_rate['반품된건수'] / df_rate['리뷰건수']
-answer = df_rate.sort_values(by=['연도', '반품률'], ascending=False).groupby('연도').head(1)[['연도', '상품']].reset_index(drop=True)
+df_rate = df.groupby(['연도', '상품']).agg(반품된건수=('반품여부', 'sum'), 리뷰건수=('반품여부', 'size')).reset_index()<br>
+df_rate['반품률'] = df_rate['반품된건수'] / df_rate['리뷰건수']<br>
+answer = df_rate.sort_values(by=['연도', '반품률'], ascending=False).groupby('연도').head(1)[['연도', '상품']].reset_index(drop=True)<br>
 answer
 </details>
 
@@ -158,9 +158,9 @@ answer
 
 <details>
 <summary>코드</summary>
-df_melt = pd.melt(df, id_vars=['학교', '연도'], value_vars=['국어', '영어', '수학', '과학'], var_name='과목', value_name='점수')
-df_melt = df_melt.groupby(['학교', '과목']).agg(과목평균=('점수', 'mean')).reset_index()
-answer = df_melt.sort_values(by=['과목', '과목평균'], ascending=False).groupby('과목').head(1)[['과목', '학교']].reset_index(drop=True)
+df_melt = pd.melt(df, id_vars=['학교', '연도'], value_vars=['국어', '영어', '수학', '과학'], var_name='과목', value_name='점수')<br>
+df_melt = df_melt.groupby(['학교', '과목']).agg(과목평균=('점수', 'mean')).reset_index()<br>
+answer = df_melt.sort_values(by=['과목', '과목평균'], ascending=False).groupby('과목').head(1)[['과목', '학교']].reset_index(drop=True)<br>
 answer
 </details>
 
@@ -177,21 +177,22 @@ answer
 
 <details>
 <summary>코드</summary>
-melt = pd.melt(df, id_vars=['연도', '지역', '구분'], value_vars=['가스(m³)', '수도(m³)', '전기(kWh)'], var_name='에너지원', value_name='총')
+melt = pd.melt(df, id_vars=['연도', '지역', '구분'], value_vars=['가스(m³)', '수도(m³)', '전기(kWh)'], var_name='에너지원', value_name='총')<br><br>
 
-melt1 = melt[melt['구분'] == '사용량']
-melt2 = melt[melt['구분'] == '요금']
+melt1 = melt[melt['구분'] == '사용량']<br>
+melt2 = melt[melt['구분'] == '요금']<br><br>
 
-merge = pd.merge(melt1, melt2, on=['연도', '지역', '에너지원'], suffixes=['사용량', '요금'])
+merge = pd.merge(melt1, melt2, on=['연도', '지역', '에너지원'], suffixes=['사용량', '요금'])<br><br>
 
-grouped = merge.groupby(['연도', '에너지원'])[['총사용량', '총요금']].sum().reset_index()
-target = grouped.groupby('연도')['총사용량'].idxmax()
-answer = grouped.loc[target, ['연도', '에너지원', '총요금']]
+grouped = merge.groupby(['연도', '에너지원'])[['총사용량', '총요금']].sum().reset_index()<br>
+target = grouped.groupby('연도')['총사용량'].idxmax()<br>
+answer = grouped.loc[target, ['연도', '에너지원', '총요금']]<br>
 answer
 </details>
 
 
 <br><br><br><br>
+
 
 <h3 style="font-weight:normal;">10.</h3>
 <h3 style="font-weight:normal;">

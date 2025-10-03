@@ -1,0 +1,4 @@
+numpy version: 1.25.0
+pandas version: 2.2.2
+scipy version: 1.14.0
+scikit-learn version: 1.5.1

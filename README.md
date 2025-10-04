@@ -181,6 +181,12 @@ answer = df_rate.sort_values(by=['연도', '반품률'], ascending=False).groupb
 answer
 	
 <br><br>
+| 연도 |   상품   |
+|:----:|:-------:|
+| 2023 | 스마트폰 |
+| 2022 | 스마트폰 |
+| 2021 | 냉장고   |
+| 2020 | 노트북   |
 </details>
 
 
@@ -199,6 +205,12 @@ answer = df_melt.sort_values(by=['과목', '과목평균'], ascending=False).gro
 answer
 	
 <br><br>
+|  과목  |  학교  |
+|:------:|:------:|
+|  영어  | 서울고 |
+|  수학  | 부산고 |
+|  국어  | 광주고 |
+|  과학  | 광주고 |
 </details>
 
 
@@ -227,6 +239,12 @@ answer = grouped.loc[target, ['연도', '에너지원', '총요금']]<br>
 answer
 
 <br><br>
+| 연도 |  에너지원  | 총요금 |
+|:----:|:----------:|:------:|
+| 2020 | 전기(kWh)  |  3800  |
+| 2021 | 전기(kWh)  |  3500  |
+| 2022 | 전기(kWh)  |  3850  |
+| 2023 | 전기(kWh)  |  4000  |
 </details>
 
 

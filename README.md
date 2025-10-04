@@ -22,6 +22,9 @@ df['사망률'] = df['사망자수'] / df['환자수']<br>
 target = df.groupby('연도')['사망률'].idxmax().values<br>
 answer = round(df[df.index.isin(target)]['사망자수'].mean())<br>
 answer
+
+<br><br>
+>779
 </details>
 
 
@@ -37,6 +40,9 @@ answer
 target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]<br>
 answer = target['의료비'].mean()<br>
 answer
+
+<br><br>
+>560229.24
 </details>
 
 
@@ -51,6 +57,8 @@ answer
 <summary>코드</summary>
 target = df.sort_values(by=['연도', '매출'], ascending=[False, False]).groupby('연도').head(2)['매출'].sum()<br>
 target
+
+<br><br>
 </details>
 
 
@@ -67,6 +75,8 @@ df['월'] = pd.to_datetime(df['월'])<br>
 df['month'] = df['월'].dt.month<br>
 target = df[df['누적재고'] > 5000]['month'].iloc[0]<br>
 target
+	
+<br><br>
 </details>
 
 
@@ -96,6 +106,8 @@ std_by_dept = df.groupby('부서')['인상률'].std()<br><br>
 <span style="color:gray;"># 인상률의 표준편차가 가장 작은 부서</span><br>
 answer = std_by_dept.idxmin()<br>
 print("가장 일정한 인상률을 가진 부서:", answer)
+
+<br><br>
 </details>
 
 
@@ -110,6 +122,8 @@ print("가장 일정한 인상률을 가진 부서:", answer)
 <summary>코드</summary>
 answer = round(df[(df['거주지'] == '도시') & (df['연령'] >= 60) & (df['성별'] == '여성')]['방문횟수'].mean(), 2)<br>
 answer
+	
+<br><br>
 </details>
 
 
@@ -135,6 +149,8 @@ df_rate['사망률'] = df_rate['사망자수'] / df_rate['인원수']<br><br>
 answer = df_rate.sort_values(['연도', '사망률'], ascending=[True, False]) \ <br>
 &nbsp;&nbsp;.groupby('연도').head(1)[['연도', '질병', '사망률']].reset_index(drop=True)<br>
 display(answer)
+
+<br><br>
 </details>
 
 
@@ -151,6 +167,8 @@ df_rate = df.groupby(['연도', '상품']).agg(반품된건수=('반품여부', 
 df_rate['반품률'] = df_rate['반품된건수'] / df_rate['리뷰건수']<br>
 answer = df_rate.sort_values(by=['연도', '반품률'], ascending=False).groupby('연도').head(1)[['연도', '상품']].reset_index(drop=True)<br>
 answer
+	
+<br><br>
 </details>
 
 
@@ -167,6 +185,8 @@ df_melt = pd.melt(df, id_vars=['학교', '연도'], value_vars=['국어', '영�
 df_melt = df_melt.groupby(['학교', '과목']).agg(과목평균=('점수', 'mean')).reset_index()<br>
 answer = df_melt.sort_values(by=['과목', '과목평균'], ascending=False).groupby('과목').head(1)[['과목', '학교']].reset_index(drop=True)<br>
 answer
+	
+<br><br>
 </details>
 
 
@@ -193,6 +213,8 @@ grouped = merge.groupby(['연도', '에너지원'])[['총사용량', '총요금'
 target = grouped.groupby('연도')['총사용량'].idxmax()<br>
 answer = grouped.loc[target, ['연도', '에너지원', '총요금']]<br>
 answer
+
+<br><br>
 </details>
 
 
@@ -227,6 +249,8 @@ for i in range(len(answer)):<br>
 &nbsp;&nbsp;print(answer[i])<br><br>
 
 print("\n조건에 맞는 고객 수:", len(answer))
+
+<br><br>
 </details>
 
 
@@ -251,6 +275,8 @@ df['콜레스테롤'] = df['콜레스테롤'].fillna(df['콜레스테롤'].mean(
 
 answer = df.groupby('연령대')['콜레스테롤'].mean().reset_index()<br>
 answer
+
+<br><br>
 </details>
 
 
@@ -275,6 +301,8 @@ for new_col, col in zip(change_col_name, target_col):<br>
 
 answer = len(df[df['혈압_zscore'] > 1.5])<br>
 answer
+
+<br><br>
 </details>
 
 
@@ -293,6 +321,8 @@ df['주문금액'] = df['주문금액'].fillna(df['주문금액'].mean())<br><br
 
 answer = df.groupby(['카테고리', '성별'])['주문금액'].mean().reset_index()<br>
 display(answer)
+
+<br><br>
 </details>
 
 
@@ -312,6 +342,8 @@ minmax = MinMaxScaler()<br><br>
 
 df['구매수량_scaled'] = minmax.fit_transform(df[['구매수량']])<br>
 print(len(df[df['구매수량_scaled'] >= 0.9]))
+
+<br><br>
 </details>
 
 
@@ -330,6 +362,8 @@ df['불만제기경험여부'] = df['고객ID'].apply(lambda x: 'Y' if x in targ
 
 answer = df[(df['연도'] == 2023) & (df['불만제기경험여부'] == 'Y')]['고객ID'].nunique()<br>
 answer
+
+<br><br>
 </details>
 
 
@@ -346,6 +380,8 @@ answer
 df['연령대'] = df['나이'].apply(lambda x: str(60) + '대 이상' if x >= 60 else str(x // 10 * 10) + '대')<br>
 answer = df.groupby('연령대')[['주문수량', '주문금액']].mean().reset_index()<br>
 display(answer)
+	
+<br><br>
 </details>
 
 
@@ -367,6 +403,8 @@ df1 = df[df['근속연수'].notna()].copy()<br><br>
 
 answer1 = len(df1[(df1['업무만족도'] <= df1['업무만족도'].quantile(0.25)) & (df1['성과등급'] == 'A')])<br>
 print(answer1)
+
+<br><br>
 </details>
 
 
@@ -383,6 +421,8 @@ print(answer1)
 df2 = df[(df['근속연수'] >= 10.0) & (df['교육참여횟수'] >= df['교육참여횟수'].mean())].copy()<br>
 answer2 = df2.groupby('부서')['연봉'].mean().sort_values(ascending=False).values[2]<br>
 print(int(answer2))
+	
+<br><br>
 </details>
 
 
@@ -402,6 +442,8 @@ df3_filtered = df3[df3['업무만족도'] >= target3]<br><br>
 
 answer3 = df3_filtered.groupby('부서')['근속연수'].mean().sort_values(ascending=False).index[0]<br>
 print(answer3)
+
+<br><br>
 </details>
 
 
@@ -420,6 +462,8 @@ df_grouped['평균반품률'] = df_grouped['반품수량'] / df_grouped['판매�
 
 answer1 = df_grouped[['제품군', '연도', '분기', '평균반품률']]<br>
 display(answer1)
+
+<br><br>
 </details>
 
 
@@ -437,6 +481,8 @@ df_grouped = df.groupby(['연도', '지역', '제품군'])['매출액'].sum().re
 target3 = df_grouped.groupby('연도')['매출액'].transform(lambda x: x.max())<br>
 answer3 = df_grouped.loc[df_grouped['매출액'] == target3, ['연도', '지역', '제품군', '매출액']]<br>
 answer3
+	
+<br><br>
 </details>
 
 
@@ -455,6 +501,8 @@ grouped = melt.groupby(['학교', '과목'])['점수'].mean().reset_index()<br>
 target = grouped.groupby('과목')['점수'].idxmax()<br>
 answer = grouped.loc[grouped.index.isin(target), ['과목', '학교']]<br>
 answer
+	
+<br><br>
 </details>
 
 
@@ -476,6 +524,8 @@ df['연령대'] = df['연령'].apply(lambda x: str(60) + '대 이상' if (x // 1
 answer1 = df.groupby('연령대')[['구매금액', '리뷰점수']].agg({'구매금액': 'mean', '리뷰점수': 'mean'}) \
 .rename(columns={'구매금액': '평균구매금액', '리뷰점수': '평균리뷰점수'}).reset_index()<br>
 answer1
+
+<br><br>
 </details>
 
 
@@ -495,6 +545,8 @@ df['불만경험여부'] = df['고객ID'].apply(lambda x: True if x in target2 e
 
 answer2 = df[df['불만경험여부'] == True].groupby('지역')['구매수량'].mean().idxmax()<br>
 answer2
+
+<br><br>
 </details>
 
 
@@ -515,6 +567,8 @@ df['구매금액'] = df['구매금액'].fillna(df['구매금액'].mean())<br><br
 df['연령대'] = df['연령'].apply(lambda x: str(x // 10 * 10) + '대 이상' if x >= 60 else str(x // 10 * 10) + '대')<br>
 answer1 = df.groupby('연령대')[['구매금액', '리뷰점수']].mean().rename(columns={'구매금액': '평균구매금액', '리뷰점수': '평균리뷰점수'}).reset_index()<br>
 display(answer1)
+
+<br><br>
 </details>
 
 
@@ -534,6 +588,8 @@ df['반품이력'] = df['고객ID'].apply(lambda x: 'Y' if x in target else 'N')
 
 answer2 = df[(df['가입년도'] == '2023') & (df['반품이력'] == 'Y')]['고객ID'].nunique()<br>
 print(answer2)
+
+<br><br>
 </details>
 
 
@@ -550,6 +606,8 @@ df['리뷰점수'] = df['리뷰점수'].fillna(df['리뷰점수'].mode()[0])<br>
 target = df[df['리뷰점수'] >= 4.0][['상품군', '리뷰점수']]<br>
 answer3 = target.groupby('상품군')['리뷰점수'].mean().idxmax()<br>
 answer3
+	
+<br><br>
 </details>
 
 
@@ -574,6 +632,8 @@ df['등급'] = df['배송만족도'].apply(lambda x: '상' if x >= 4.0 else ('�
 
 answer1 = df.groupby('등급')['구매금액'].mean().reset_index().rename(columns={'구매금액': '평균구매금액'})<br>
 answer1
+
+<br><br>
 </details>
 
 
@@ -605,6 +665,8 @@ pivot.columns = ['고객ID', 'sum', 'count']<br>
 pivot['리뷰비율'] = pivot['sum'] / pivot['count']<br>
 answer3 = len(pivot[pivot['리뷰비율'] >= 0.7])<br>
 print("고객 수:", answer3)
+
+<br><br>
 </details>
 
 <br><br><br><br>
@@ -624,6 +686,8 @@ grouped = df_filtered.groupby('결제방식')['반품여부'].agg(['sum', 'count
 grouped['반품비율'] = grouped['sum'] / grouped['count']<br>
 answer3 = grouped.sort_values(by='반품비율', ascending=False).index[0]<br>
 answer3
+
+<br><br>
 </details>
 
 </details>

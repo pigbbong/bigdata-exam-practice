@@ -927,7 +927,7 @@ else:<br>
 > 두 집단이 정규성을 만족함<br>
 > 두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함<br>
 > 검정통계량: 1.208913892570682<br>
-> pvalues: 0.227654240467682<br>
+> pvalues: 0.227654240467682
 </details>  
 
 
@@ -948,29 +948,10 @@ cdf = pd.crosstab(df['흡연여부'], df['운동여부'])<br>
 chi2_stats, chi2_p, ddof, expected = chi2_contingency(cdf)<br>
 print("Statistics:", chi2_stats)<br>
 print("p-values:", chi2_p)
-</details>  
 
-
-<br><br><br><br>
-
-
-<h3 style="font-weight:normal;">4-3.</h3>  
-<h3 style="font-weight:normal;">  
-혈압이 정규성을 만족하는지 검정하시오.  
-<br>  
-적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오.  
-</h3>  
-
-<details>  
-<summary>코드</summary>  
-from scipy.stats import shapiro<br><br>
-stat, p = shapiro(df['혈압'])<br>
-print("statictis:", stat)<br>
-print("p-value:", p)<br><br>
-if p < 0.05:<br>
-    print("정규성 불만족")<br>
-else:<br>
-    print("정규성 만족")
+<br><br>
+>Statistics: 3.052418082722308<br>
+>p-values: 0.08061703166032919
 </details>  
 
 
@@ -997,6 +978,14 @@ print("등분산성 검정 p-value:", p)<br><br>
 stat, p = f_oneway(*groups)<br>
 print("ANOVA stats:", stat)<br>
 print("ANOVA p-value:", p)
+
+<br><br>
+>[고졸] 정규성검정 p-value: 0.28955228892252133<br>
+>[대학원졸] 정규성검정 p-value: 0.6482530202159127<br>
+>[대졸] 정규성검정 p-value: 0.10586676249673443<br>
+>등분산성 검정 p-value: 0.35191382138446<br>
+>ANOVA stats: 0.17646311829870298<br>
+>ANOVA p-value: 0.8383048677370049
 </details>  
 
 
@@ -1017,6 +1006,10 @@ cdf = pd.crosstab(df['재택근무여부'], df['이직경험여부'])<br>
 chi2_stats, p, ddof, expected = chi2_contingency(cdf)<br><br>
 print("chi2_stats:", chi2_stats)<br>
 print("p-value:", p)
+
+<br><br>
+>chi2_stats: 0.0<br>
+>p-value: 1.0<br>
 </details>  
 
 
@@ -1040,6 +1033,11 @@ if p < 0.05:<br>
     print("정규성 불만족")<br>
 else:<br>
     print("정규성 만족")
+
+<br><br>
+>statictis: 0.9935192674208136<br>
+>p-value: 0.13854889195838865
+>정규성 만족
 </details>  
 
 
@@ -1070,6 +1068,33 @@ print("\n")<br>
 pvalues = model.pvalues[1:]<br>
 significant_pvalue = len(pvalues[pvalues < 0.05])<br>
 print("유의미한 변수 개수:", significant_pvalue)
+
+<br><br>
+>회귀계수 값:<br>
+>C(부서)[T.영업]    3.860968<br>
+>C(부서)[T.인사]   -0.487387<br>
+>C(부서)[T.재무]    0.215100<br>
+>C(직급)[T.대리]   -4.393583<br>
+>C(직급)[T.부장]    3.177155<br>
+>C(직급)[T.사원]   -3.560375<br>
+>C(직급)[T.차장]    1.359326<br>
+>근속연수           1.402535<br>
+>주당근무시간         0.824601<br><br>
+
+
+>p-value 값:<br>
+>C(부서)[T.영업]    1.453251e-07<br>
+>C(부서)[T.인사]    5.003544e-01<br>
+>C(부서)[T.재무]    7.583646e-01<br>
+>C(직급)[T.대리]    2.328691e-08<br>
+>C(직급)[T.부장]    1.061265e-04<br>
+>C(직급)[T.사원]    1.146126e-05<br>
+>C(직급)[T.차장]    8.517250e-02<br>
+>근속연수           8.578075e-44<br>
+>주당근무시간         1.005734e-45<br><br>
+
+
+>유의미한 변수 개수: 6
 </details>  
 
 
@@ -1094,6 +1119,11 @@ else:<br>
     print("정규분포 만족")<br><br>
 print("statistics:", stat)<br>
 print("p-value:", p)
+
+<br><br>
+>정규분포 만족<br>
+>statistics: 0.9974856994141608<br>
+>p-value: 0.809330150039685
 </details>  
 
 <br><br><br><br>

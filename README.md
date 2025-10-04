@@ -1160,6 +1160,11 @@ else:<br>
 <span style="color:gray;"># 독립표본 t-검정 시행</span><br>
 t_stat, t_p = ttest_ind(group2, group1)<br><br>
 print(t_stat.round(3))
+
+<br><br>
+>두 집단의 정규성이 만족됨<br>
+>두 집단의 등분산성을 이루고 있음<br>
+>3.981
 </details>  
 
 
@@ -1184,6 +1189,10 @@ group3 = df[df['Strategy'] == 'C']['Spending']<br><br>
 f_stats, f_p = f_oneway(group1, group2, group3)<br>
 print("F-통계량:", f_stats.round(3))<br>
 print("pvalue:", f_p.round(3))
+
+<br><br>
+>F-통계량: 10.938<br>
+>pvalue: 0.0
 </details>  
 
 
@@ -1209,6 +1218,11 @@ anova = sm.stats.anova_lm(model, typ=2)<br><br>
 print("C(Strategy) statistics:", anova.loc['C(Strategy)', 'F'].round(3))<br>
 print("C(AgeGroup) statistics:", anova.loc['C(AgeGroup)', 'F'].round(3))<br>
 print("Interaction statistics:", anova.loc['C(Strategy):C(AgeGroup)', 'F'].round(3))
+
+<br><br>
+C(Strategy) statistics: 14.629<br>
+C(AgeGroup) statistics: 2.19<br>
+Interaction statistics: 1.914
 </details>  
 
 
@@ -1247,7 +1261,12 @@ else:<br>
     pvalue = f.sf(f_stats, df3, df2)<br><br>
 print("F_statistics:", f_stats.round(3))<br>
 print("p-value:", pvalue.round(3))
+	
+<br><br>
+>F_statistics: 1.946<br>
+>p-value: 0.012
 </details>  
+
 
 
 <br><br><br><br>
@@ -1283,6 +1302,11 @@ print("pvalue:", pvalue.round(3))<br><br>
 <span style="color:gray;"># 합동 분산량 계산</span><br>
 pooled_var = ((n1 - 1) * group1_var + (n2 - 1) * group2_var) / (n1 + n2 - 2)<br><br>
 print("합동 분산량 (Pooled Variance):", round(pooled_var, 3))
+
+<br><br>
+>F-statistics: 1.666<br>
+>pvalue: 0.014<br>
+>합동 분산량 (Pooled Variance): 214.932
 </details>  
 
 
@@ -1317,6 +1341,13 @@ if group1_var / group3_var > 1.0:<br>
     print("DrugB의 검정통계량이 Control보다 크다.")<br>
 else:<br>
     print("DrugB의 분산이 Control보다 작다.")<br>
+
+<br><br>
+>DrugB와 DrugA의 F검정통계량: 1.946<br>
+>DrugB의 검정통계량이 DrugA보다 크다.<br><br>
+>
+>DrugB와 Control의 F검정통계량: 2.986<br>
+>DrugB의 검정통계량이 Control보다 크다.
 </details>  
 
 

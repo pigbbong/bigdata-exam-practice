@@ -645,6 +645,17 @@ answer3
 
 <details>  
 <summary>코드</summary>  
+from scipy.stats import chi2_contingency
+
+cdf = pd.crosstab(df['연령대'], df['질병유무'])
+chi2_stats, p, _, _ = chi2_contingency(cdf)
+print("검정통계량:", chi2_stats)
+print("p_values:", p)
+
+if p < 0.05:
+    print("귀무가설 기각")
+else:
+    print("귀무가설 채택")
 </details>  
 
 
@@ -659,7 +670,15 @@ answer3
 </h3>  
 
 <details>  
-<summary>코드</summary>  
+<summary>코드</summary> 
+from statsmodels.formula.api import ols
+
+model = ols("질병유무 ~ C(연령대) + C(성별) + C(교육수준)", data=df).fit()
+
+pvalues = model.pvalues[1:]
+
+print(f"유의미한 영향을 주는 변수의 개수: {len(pvalues[pvalues < 0.05])}개")
+print("R-squared:", model.rsquared)
 </details>  
 
 
@@ -675,6 +694,16 @@ answer3
 
 <details>  
 <summary>코드</summary>  
+from scipy.stats import chi2_contingency
+
+cdf = pd.crosstab(df['직업군'], df['만성질환유무'])
+chi2_stats, p, ddof, expected = chi2_contingency(cdf)
+
+
+if p < 0.05:
+    print("직업군에 따른 만성질환유무는 서로 연관되어있음")
+else:
+    print("직업군에 따라 만성질환유무는 서로 관계가 없음")
 </details>  
 
 
@@ -692,6 +721,14 @@ answer3
 
 <details>  
 <summary>코드</summary>  
+from statsmodels.formula.api import ols
+
+model = ols("수면시간 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()
+
+pvalues = model.pvalues[1:]
+
+print(f"모델에 유의미한 영향을 주는 변수의 개수: {len(list(pvalues[pvalues < 0.05]))}개\n")
+print("R-squared:", model.rsquared)
 </details>  
 
 
@@ -708,6 +745,12 @@ answer3
 
 <details>  
 <summary>코드</summary>  
+from statsmodels.formula.api import logit
+
+model = logit("만성질환유무 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()
+
+print("LR Test Statistics:", -2 * (model.llnull - model.llf))
+print("LR Test p-value:", model.llr_pvalue)
 </details>  
 
 

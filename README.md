@@ -1098,6 +1098,44 @@ print("Interaction statistics:", anova.loc['C(Strategy):C(AgeGroup)', 'F'].round
 <br><br><br><br>
 
 
+<h3 style="font-weight:normal;">10-1.</h3>  
+<h3 style="font-weight:normal;">  
+신약 처치 그룹(Treatment)에 따라 혈압(BloodPressure)의 분산이 달라지는지 판단하고자 한다.  
+<br>  
+Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을 분자로 하는 F-검정을 수행하시오.  
+<br>  
+그리고 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오.  
+</h3>  
+
+<details>  
+<summary>코드</summary>  
+import numpy as np<br>
+from scipy.stats import f<br><br>
+group1 = df[df['Treatment'] == 'Control']['BloodPressure']<br>
+group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']<br>
+group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']<br><br>
+group2_var = np.var(group2, ddof=1)<br>
+group3_var = np.var(group3, ddof=1)<br><br>
+n2 = len(group2)<br>
+n3 = len(group3)<br><br>
+if group2_var > group3_var:<br>
+    f_stats = group2_var / group3_var<br>
+    df2 = n2 - 1<br>
+    df3 = n3 - 1<br>
+    pvalue = f.sf(f_stats, df2, df3)<br>
+else:<br>
+    f_stats = group3_var / group2_var<br>
+    df2 = n2 - 1<br>
+    df3 = n3 - 1<br>
+    pvalue = f.sf(f_stats, df3, df2)<br><br>
+print("F_statistics:", f_stats.round(3))<br>
+print("p-value:", pvalue.round(3))
+</details>  
+
+
+<br><br><br><br>
+
+
 <h3 style="font-weight:normal;">10-2.</h3>  
 <h3 style="font-weight:normal;">  
 성별(Gender)에 따른 혈당(Glucose) 분산이 동일한지 검정하고,  

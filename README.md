@@ -708,9 +708,9 @@ answer3
 그리고 다음 값을 출력하시오:  
 </h3>  
 
-<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체</h5>  
-<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
-<h5 style="font-weight:normal;">- 유의미한 변수의 개수</h5>  
+<h4 style="font-weight:normal;">- 회귀계수(β) 값 전체</h4>  
+<h4 style="font-weight:normal;">- p-value 값 전체</h4>  
+<h4 style="font-weight:normal;">- 유의미한 변수의 개수</h4>  
 
 <details>  
 <summary>코드</summary>  
@@ -727,10 +727,10 @@ answer3
 그리고 다음 값을 출력하시오:  
 </h3>  
 
-<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체</h5>  
-<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
-<h5 style="font-weight:normal;">- 유의미한 변수의 개수</h5>  
-<h5 style="font-weight:normal;">- 각 변수의 오즈비(odds ratio) 값 전체 (exp(β)로 계산)</h5>  
+<h4 style="font-weight:normal;">- 회귀계수(β) 값 전체</h4>  
+<h4 style="font-weight:normal;">- p-value 값 전체</h4>  
+<h4 style="font-weight:normal;">- 유의미한 변수의 개수</h4>  
+<h4 style="font-weight:normal;">- 각 변수의 오즈비(odds ratio) 값 전체 (exp(β)로 계산)</h4>  
 
 <details>  
 <summary>코드</summary>  
@@ -823,9 +823,9 @@ answer3
 그리고 다음 값들을 출력하시오:  
 </h3>  
 
-<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체 출력</h5>  
-<h5 style="font-weight:normal;">- p-value 값 전체 출력</h5>  
-<h5 style="font-weight:normal;">- 유의미한 변수의 개수 출력 (유의 수준은 0.05로 설정)</h5>  
+<h4 style="font-weight:normal;">- 회귀계수(β) 값 전체 출력</h4>  
+<h4 style="font-weight:normal;">- p-value 값 전체 출력</h4>  
+<h4 style="font-weight:normal;">- 유의미한 변수의 개수 출력 (유의 수준은 0.05로 설정)</h4>  
 
 <details>  
 <summary>코드</summary>  
@@ -986,18 +986,15 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 
 <h3 style="font-weight:normal;">11-5.</h3>  
 <h3 style="font-weight:normal;">  
-이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.  </h3>
+이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.  
+</h3>  
 <br>  
 <br>  
 기대 이론적 분포 (비율 기준):  
-<h5 style="font-weight:normal;"><br>  
-- 20대: 20%  
-<br>  
-- 30대: 30%  
-<br>  
-- 40대: 30%  
-<br>  
-- 50대: 20%</h5>
+<h4 style="font-weight:normal;">- 20대: 20%</h4>  
+<h4 style="font-weight:normal;">- 30대: 30%</h4>  
+<h4 style="font-weight:normal;">- 40대: 30%</h4>  
+<h4 style="font-weight:normal;">- 50대: 20%</h4>  
 <br>  
 <br>  
 <h3 style="font-weight:normal;">  
@@ -1017,9 +1014,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 그리고 다음을 출력하시오:  
 </h3>  
 
-<h5 style="font-weight:normal;">- 회귀계수 (β) 값 전체</h5>  
-<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
-<h5 style="font-weight:normal;">- 유의미한 변수의 개수 (p-value &lt; 0.05인 변수 개수)</h5>  
+<h4 style="font-weight:normal;">- 회귀계수 (β) 값 전체</h4>  
+<h4 style="font-weight:normal;">- p-value 값 전체</h4>  
+<h4 style="font-weight:normal;">- 유의미한 변수의 개수 (p-value &lt; 0.05인 변수 개수)</h4>  
 
 <details>  
 <summary>코드</summary>  
@@ -1030,19 +1027,16 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <h3 style="font-weight:normal;">13.</h3>  
 <h3 style="font-weight:normal;">  
 이직의도를 예측하는 로지스틱 회귀모형을 적합하고 다음을 출력하시오:  
-<br>  
-<h5 style="font-weight:normal;">- 유의미한 변수의 개수
-<br>  
-- 오즈비 (odds ratio) 값 전체 (exp(β))  
-<br>  
-- 잔차 이탈도 (Residual Deviance)  
-<br>  
-- 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량) </h5>
 </h3>  
+
+<h4 style="font-weight:normal;">- 유의미한 변수의 개수</h4>  
+<h4 style="font-weight:normal;">- 오즈비 (odds ratio) 값 전체 (exp(β))</h4>  
+<h4 style="font-weight:normal;">- 잔차 이탈도 (Residual Deviance)</h4>  
+<h4 style="font-weight:normal;">- 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)</h4>  
 
 <details>  
 <summary>코드</summary>  
-</details>  
+</details>    
 
 </details>
 

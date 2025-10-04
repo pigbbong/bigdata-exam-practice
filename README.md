@@ -1030,13 +1030,13 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <h3 style="font-weight:normal;">  
 이직의도를 예측하는 로지스틱 회귀모형을 적합하고 다음을 출력하시오:  
 <br>  
-- 유의미한 변수의 개수  
+<h5 style="font-weight:normal;">- 유의미한 변수의 개수
 <br>  
 - 오즈비 (odds ratio) 값 전체 (exp(β))  
 <br>  
 - 잔차 이탈도 (Residual Deviance)  
 <br>  
-- 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)  
+- 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량) </h5>
 </h3>  
 
 <details>  

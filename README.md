@@ -645,16 +645,14 @@ answer3
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import chi2_contingency
-
-cdf = pd.crosstab(df['연령대'], df['질병유무'])
-chi2_stats, p, _, _ = chi2_contingency(cdf)
-print("검정통계량:", chi2_stats)
-print("p_values:", p)
-
-if p < 0.05:
-    print("귀무가설 기각")
-else:
+from scipy.stats import chi2_contingency<br><br>
+cdf = pd.crosstab(df['연령대'], df['질병유무'])<br>
+chi2_stats, p, _, _ = chi2_contingency(cdf)<br>
+print("검정통계량:", chi2_stats)<br>
+print("p_values:", p)<br><br>
+if p < 0.05:<br>
+    print("귀무가설 기각")<br>
+else:<br>
     print("귀무가설 채택")
 </details>  
 
@@ -670,14 +668,11 @@ else:
 </h3>  
 
 <details>  
-<summary>코드</summary> 
-from statsmodels.formula.api import ols
-
-model = ols("질병유무 ~ C(연령대) + C(성별) + C(교육수준)", data=df).fit()
-
-pvalues = model.pvalues[1:]
-
-print(f"유의미한 영향을 주는 변수의 개수: {len(pvalues[pvalues < 0.05])}개")
+<summary>코드</summary>  
+from statsmodels.formula.api import ols<br><br>
+model = ols("질병유무 ~ C(연령대) + C(성별) + C(교육수준)", data=df).fit()<br><br>
+pvalues = model.pvalues[1:]<br><br>
+print(f"유의미한 영향을 주는 변수의 개수: {len(pvalues[pvalues < 0.05])}개")<br>
 print("R-squared:", model.rsquared)
 </details>  
 
@@ -694,22 +689,17 @@ print("R-squared:", model.rsquared)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import chi2_contingency
-
-cdf = pd.crosstab(df['직업군'], df['만성질환유무'])
-chi2_stats, p, ddof, expected = chi2_contingency(cdf)
-
-
-if p < 0.05:
-    print("직업군에 따른 만성질환유무는 서로 연관되어있음")
-else:
+from scipy.stats import chi2_contingency<br><br>
+cdf = pd.crosstab(df['직업군'], df['만성질환유무'])<br>
+chi2_stats, p, ddof, expected = chi2_contingency(cdf)<br><br>
+if p < 0.05:<br>
+    print("직업군에 따른 만성질환유무는 서로 연관되어있음")<br>
+else:<br>
     print("직업군에 따라 만성질환유무는 서로 관계가 없음")
 </details>  
 
 
-
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">2-2.</h3>  
@@ -721,19 +711,15 @@ else:
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import ols
-
-model = ols("수면시간 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()
-
-pvalues = model.pvalues[1:]
-
-print(f"모델에 유의미한 영향을 주는 변수의 개수: {len(list(pvalues[pvalues < 0.05]))}개\n")
+from statsmodels.formula.api import ols<br><br>
+model = ols("수면시간 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()<br><br>
+pvalues = model.pvalues[1:]<br><br>
+print(f"모델에 유의미한 영향을 주는 변수의 개수: {len(list(pvalues[pvalues < 0.05]))}개\n")<br>
 print("R-squared:", model.rsquared)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">2-3.</h3>  
@@ -745,17 +731,14 @@ print("R-squared:", model.rsquared)
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import logit
-
-model = logit("만성질환유무 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()
-
-print("LR Test Statistics:", -2 * (model.llnull - model.llf))
+from statsmodels.formula.api import logit<br><br>
+model = logit("만성질환유무 ~ C(직업군) + C(결혼여부) + C(운동빈도) + 스트레스수준", data=df).fit()<br><br>
+print("LR Test Statistics:", -2 * (model.llnull - model.llf))<br>
 print("LR Test p-value:", model.llr_pvalue)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">3-1.</h3>  
@@ -771,26 +754,22 @@ print("LR Test p-value:", model.llr_pvalue)
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import ols
-
-model = ols("스마트폰사용시간 ~ C(지역) + 평일_인터넷사용시간 + 주말_인터넷사용시간", data=df).fit()
-
-coef = model.params[1:]
-pvalues = model.pvalues[1:]
-
-print("회귀계수 값:")
-print(coef)
-print("\n")
-print("p-values:")
-print(pvalues)
-print("\n")
-print("유의미한 변수의 개수:")
+from statsmodels.formula.api import ols<br><br>
+model = ols("스마트폰사용시간 ~ C(지역) + 평일_인터넷사용시간 + 주말_인터넷사용시간", data=df).fit()<br><br>
+coef = model.params[1:]<br>
+pvalues = model.pvalues[1:]<br><br>
+print("회귀계수 값:")<br>
+print(coef)<br>
+print("\n")<br>
+print("p-values:")<br>
+print(pvalues)<br>
+print("\n")<br>
+print("유의미한 변수의 개수:")<br>
 print(len(pvalues[pvalues < 0.05]))
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">3-2.</h3>  
@@ -807,24 +786,21 @@ print(len(pvalues[pvalues < 0.05]))
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import logit
-import numpy as np
-
-model = logit("소셜미디어이용 ~ C(지역) + 평일_인터넷사용시간 + 주말_인터넷사용시간 + 스마트폰사용시간", data=df).fit()
-
-coef = model.params[1:]
-pvalues = model.pvalues[1:]
-
-print("회귀계수 값:")
-print(coef)
-print("\n")
-print("p-values:")
-print(pvalues)
-print("\n")
-print("유의미한 변수의 개수:")
-print(len(pvalues[pvalues < 0.05]))
-print("\n")
-print("오즈비:")
+from statsmodels.formula.api import logit<br>
+import numpy as np<br><br>
+model = logit("소셜미디어이용 ~ C(지역) + 평일_인터넷사용시간 + 주말_인터넷사용시간 + 스마트폰사용시간", data=df).fit()<br><br>
+coef = model.params[1:]<br>
+pvalues = model.pvalues[1:]<br><br>
+print("회귀계수 값:")<br>
+print(coef)<br>
+print("\n")<br>
+print("p-values:")<br>
+print(pvalues)<br>
+print("\n")<br>
+print("유의미한 변수의 개수:")<br>
+print(len(pvalues[pvalues < 0.05]))<br>
+print("\n")<br>
+print("오즈비:")<br>
 print(np.exp(model.params[1:]))
 </details>  
 

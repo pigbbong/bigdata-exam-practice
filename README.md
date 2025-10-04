@@ -922,6 +922,12 @@ else:<br>
     u_stat, u_p = mannwhitneyu(male, female)<br>
     print("검정통계량:", u_stat)<br>
     print("pvalues:", u_p)
+
+<br><br>
+> 두 집단이 정규성을 만족함<br>
+> 두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함<br>
+> 검정통계량: 1.208913892570682<br>
+> pvalues: 0.227654240467682<br>
 </details>  
 
 

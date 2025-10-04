@@ -794,7 +794,7 @@ print("유의미한 변수의 개수:")<br>
 print(len(pvalues[pvalues < 0.05]))
 
 <br><br>
->
+출력내용:
 <br>
 회귀계수 값: <br>
 C(지역)[T.광주]   -0.002578 <br>
@@ -852,7 +852,7 @@ print(np.exp(model.params[1:]))
 </details>  
 
 <br><br>
->
+출력내용:
 <br>
 회귀계수 값: <br>
 C(지역)[T.광주]   -0.159362 <br>

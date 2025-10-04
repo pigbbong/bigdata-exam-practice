@@ -1220,9 +1220,9 @@ print("C(AgeGroup) statistics:", anova.loc['C(AgeGroup)', 'F'].round(3))<br>
 print("Interaction statistics:", anova.loc['C(Strategy):C(AgeGroup)', 'F'].round(3))
 
 <br><br>
-C(Strategy) statistics: 14.629<br>
-C(AgeGroup) statistics: 2.19<br>
-Interaction statistics: 1.914
+>C(Strategy) statistics: 14.629<br>
+>C(AgeGroup) statistics: 2.19<br>
+>Interaction statistics: 1.914
 </details>  
 
 
@@ -1374,6 +1374,10 @@ female = df[df['성별'] == '여']['키']<br><br>
 stats, p = ttest_ind(male, female, equal_var=False)<br><br>
 print("statistics:", stats)<br>
 print("pvalue:", p)
+
+<br><br>
+>statistics: -0.17549603962612095<br>
+>pvalue: 0.8607868693135134
 </details>  
 
 
@@ -1396,6 +1400,9 @@ print("statistics:", chi2_stats)<br>
 print("pvalues:", chi2_p)<br>
 </details>  
 
+<br><br>
+>statistics: 2.1122034295222973<br>
+>pvalues: 0.14612877750522046
 
 <br><br><br><br>
 
@@ -1415,6 +1422,10 @@ blpr = df['혈압']<br>
 stat, p = shapiro(blpr)<br>
 print("statistics:", stat)<br>
 print("pvalues:", p)<br>
+
+<br><br>
+>statistics: 0.9935618194246021<br>
+>pvalues: 0.0866211621977162
 </details>
 
 
@@ -1441,6 +1452,10 @@ group_50 = df[df['연령대'] == '50대']['체중']<br><br>
 stat, p = levene(group_20, group_30, group_40, group_50)<br><br>
 print("Levene statistics:", stat)<br>
 print("p-value:", p)
+
+<br><br>
+>Levene statistics: 2.524537878254589<br>
+>p-value: 0.057262483899653514
 </details>  
 
 
@@ -1477,6 +1492,10 @@ expected = [total_n * expected_ratio[age] for age in ['20대', '30대', '40대',
 stat, p = chisquare(f_obs=observed, f_exp=expected)<br><br>
 print("Chi-square statistics:", stat)<br>
 print("p-value:", p)
+
+<br><br>
+>Chi-square statistics: 10.720833333333333<br>
+>p-value: 0.013335305093221296
 </details>  
 
 <br><br><br><br>
@@ -1505,6 +1524,28 @@ print("\n")<br><br>
 pvalues = model.pvalues[1:]<br>
 target_num = len(pvalues[pvalues < 0.05])<br>
 print("유의미한 변수의 개수:", target_num)
+
+
+<br><br>
+>coef<br>
+>C(전공)[T.사회]   -10.174765<br>
+>C(전공)[T.인문]    -9.808244<br>
+>C(전공)[T.자연]   -10.346413<br>
+>C(학위)[T.석사]    -7.111037<br>
+>C(학위)[T.학사]   -14.510797<br>
+>연구년수            1.265994<br>
+>연간논문수           1.199229<br><br>
+
+>pvalue<br>
+>C(전공)[T.사회]     4.179690e-57<br>
+>C(전공)[T.인문]     1.042821e-52<br>
+>C(전공)[T.자연]     6.193599e-59<br>
+>C(학위)[T.석사]     8.130448e-41<br>
+>C(학위)[T.학사]    4.824165e-112<br>
+>연구년수            4.837947e-36<br>
+>연간논문수           5.287497e-12<br><br>
+
+>유의미한 변수의 개수: 7
 </details>  
 
 
@@ -1540,6 +1581,24 @@ print("Residual Deviance:", -2 * model.llf)<br>
 print("\n")<br><br>
 <span style="color:gray;"># 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)</span><br>
 print("LR test statistics:", -2 * (model.llnull - model.llf))
+
+<br><br>
+
+>유의미한 변수의 개수: 1개<br><br>
+>
+>
+>odds ratio:<br>
+>C(전공)[T.사회]     130.411568<br>
+>C(전공)[T.인문]     113.323960<br>
+>C(전공)[T.자연]      96.562353<br>
+>C(학위)[T.석사]      25.142587<br>
+>C(학위)[T.학사]    1278.187320<br>
+>연구년수              0.561776<br>
+>연간논문수             0.491720<br><br>
+>
+>Residual Deviance: 230.95439446109864<br><br>
+>
+>LR test statistics: 318.8234774085586
 </details>  
 
 </details>

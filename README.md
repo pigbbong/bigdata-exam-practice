@@ -648,6 +648,8 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
 
 <h3 style="font-weight:normal;">1-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -660,6 +662,8 @@ answer3
 <summary>코드</summary>  
 </details>  
 
+
+<br><br><br><br>
 
 
 <h3 style="font-weight:normal;">2-1.</h3>  
@@ -675,6 +679,10 @@ answer3
 
 
 
+<br><br><br><br>
+
+
+
 <h3 style="font-weight:normal;">2-2.</h3>  
 <h3 style="font-weight:normal;">  
 수면시간을 종속변수로 설정하고 직업군, 결혼여부, 운동빈도, 스트레스수준을 독립변수로 설정한 다중회귀모형을 구축하시오.  
@@ -685,6 +693,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -698,6 +709,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -717,8 +731,9 @@ answer3
 </details>  
 
 
-
 <br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">3-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -735,6 +750,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -763,6 +781,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">4-3.</h3>  
 <h3 style="font-weight:normal;">  
@@ -774,6 +795,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -789,6 +813,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">5-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -802,6 +829,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">5-3.</h3>  
 <h3 style="font-weight:normal;">  
@@ -813,6 +843,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -832,6 +865,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">6-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -843,6 +879,9 @@ answer3
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -860,6 +899,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">8.</h3>  
 <h3 style="font-weight:normal;">  
@@ -875,6 +917,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">9.</h3>  
 <h3 style="font-weight:normal;">  
@@ -887,6 +932,8 @@ answer3
 <summary>코드</summary>  
 </details>  
 
+
+<br><br><br><br>
 
 
 <h3 style="font-weight:normal;">10-1.</h3>  
@@ -903,6 +950,9 @@ Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">10-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -914,6 +964,9 @@ F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -942,6 +995,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 
@@ -983,6 +1039,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">11-5.</h3>  
 <h3 style="font-weight:normal;">  
@@ -1006,6 +1065,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">12.</h3>  
 <h3 style="font-weight:normal;">  
@@ -1023,6 +1085,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">13.</h3>  
 <h3 style="font-weight:normal;">  
@@ -1037,6 +1102,7 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <details>  
 <summary>코드</summary>  
 </details>    
+
 
 </details>
 

@@ -655,6 +655,8 @@ if p < 0.05:<br>
 else:<br>
     print("귀무가설 채택")
 </details>  
+<br>
+> 직업군에 따른 만성질환유무는 서로 연관되어있음
 
 
 <br><br><br><br>

@@ -990,14 +990,14 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <br>  
 <br>  
 기대 이론적 분포 (비율 기준):  
-<br>  
+<h5 style="font-weight:normal;"><br>  
 - 20대: 20%  
 <br>  
 - 30대: 30%  
 <br>  
 - 40대: 30%  
 <br>  
-- 50대: 20%  
+- 50대: 20%</h5>
 <br>  
 <br>  
 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오.  

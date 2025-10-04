@@ -768,6 +768,9 @@ answer3
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">4-2.</h3>  
 <h3 style="font-weight:normal;">  
@@ -984,6 +987,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 </details>  
 
 
+<br><br><br><br>
+
+
 
 <h3 style="font-weight:normal;">11-1.</h3>  
 <h3 style="font-weight:normal;">  
@@ -1013,6 +1019,8 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 </details>  
 
 
+<br><br><br><br>
+
 
 <h3 style="font-weight:normal;">11-3.</h3>  
 <h3 style="font-weight:normal;">  
@@ -1024,6 +1032,9 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <details>  
 <summary>코드</summary>  
 </details>  
+
+
+<br><br><br><br>
 
 
 

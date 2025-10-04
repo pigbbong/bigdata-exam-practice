@@ -1172,6 +1172,40 @@ print("합동 분산량 (Pooled Variance):", round(pooled_var, 3))
 <br><br><br><br>
 
 
+<h3 style="font-weight:normal;">10-3.</h3>  
+<h3 style="font-weight:normal;">  
+DrugB 그룹의 혈압(BloodPressure) 분산이 Control 또는 DrugA보다 통계적으로 더 큰지를 보기 위해,  
+<br>  
+DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,  
+<br>  
+각각의 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오.  
+</h3>  
+
+<details>  
+<summary>코드</summary>  
+import numpy as np<br><br>
+group1 = df[df['Treatment'] == 'DrugB']['BloodPressure']<br>
+group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']<br>
+group3 = df[df['Treatment'] == 'Control']['BloodPressure']<br><br>
+group1_var = np.var(group1, ddof=1)<br>
+group2_var = np.var(group2, ddof=1)<br>
+group3_var = np.var(group3, ddof=1)<br><br>
+print("DrugB와 DrugA의 F검정통계량:", (group1_var / group2_var).round(3))<br><br>
+if group1_var / group2_var > 1.0:<br>
+    print("DrugB의 검정통계량이 DrugA보다 크다.", end='\n\n')<br>
+else:<br>
+    print("DrugB의 분산이 DrugA보다 작다.", end='\n\n')<br><br>
+print("DrugB와 Control의 F검정통계량:", (group1_var / group3_var).round(3))<br><br>
+if group1_var / group3_var > 1.0:<br>
+    print("DrugB의 검정통계량이 Control보다 크다.")<br>
+else:<br>
+    print("DrugB의 분산이 Control보다 작다.")<br>
+</details>  
+
+
+<br><br><br><br>
+
+
 <h3 style="font-weight:normal;">11-1.</h3>  
 <h3 style="font-weight:normal;">  
 성별에 따라 키의 평균에 차이가 있는지 검정하시오.  
@@ -1193,6 +1227,48 @@ stats, p = ttest_ind(male, female, equal_var=False)<br><br>
 print("statistics:", stats)<br>
 print("pvalue:", p)
 </details>  
+
+
+<br><br><br><br>
+
+
+<h3 style="font-weight:normal;">11-2.</h3>  
+<h3 style="font-weight:normal;">  
+흡연 여부와 운동 여부가 서로 독립적인지 검정하시오.  
+<br>  
+적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오.  
+</h3>  
+
+<details>  
+<summary>코드</summary>  
+from scipy.stats import chi2_contingency<br><br>
+cdf = pd.crosstab(df['흡연여부'], df['운동여부'])<br>
+chi2_stats, chi2_p, _ , _ = chi2_contingency(cdf)<br>
+print("statistics:", chi2_stats)<br>
+print("pvalues:", chi2_p)<br>
+</details>  
+
+
+<br><br><br><br>
+
+
+
+<h3 style="font-weight:normal;">11-3.</h3>  
+<h3 style="font-weight:normal;">  
+혈압이 정규성을 만족하는지 검정하시오.  
+<br>  
+적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오.  
+</h3>  
+
+<details>  
+<summary>코드</summary>  
+from scipy.stats import shapiro<br><br>
+blpr = df['혈압']<br>
+stat, p = shapiro(blpr)<br>
+print("statistics:", stat)<br>
+print("pvalues:", p)<br>
+</details>
+
 
 
 <br><br><br><br>

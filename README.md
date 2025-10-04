@@ -1060,7 +1060,7 @@ from scipy.stats import shapiro, levene, mannwhitneyu, ttest_ind
 group1 = df[df['DietGroup'] == 'A']['Glucose']
 group2 = df[df['DietGroup'] == 'B']['Glucose']
 
-`# 정규성 검정`
+<span style="color:gray;"># 정규성 검정</span>
 
 stat1, p1 = shapiro(group1)
 stat2, p2 = shapiro(group2)
@@ -1070,7 +1070,7 @@ print("두 집단의 정규성이 만족됨")
 else:
 print("정규성을 만족하지 않는 집단이 있음")
 
-`# 등분산성 검정`
+<span style="color:gray;"># 등분산성 검정</span>
 
 l_stat, l_p = levene(group1, group2)
 
@@ -1079,7 +1079,7 @@ print("두 집단의 등분산성을 이루고 있음")
 else:
 print("두 집단이 등분산성을 만족하지 않음")
 
-`# 독립표본 t-검정 시행`
+<span style="color:gray;"># 독립표본 t-검정 시행</span>
 
 t_stat, t_p = ttest_ind(group2, group1)
 

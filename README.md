@@ -662,8 +662,8 @@ else:<br>
     print("귀무가설 채택")
 
 <br><br>
-> 검정통계량: 24.71328589749828
-> p_values: 1.7725414243948196e-05
+> 검정통계량: 24.71328589749828<br>
+> p_values: 1.7725414243948196e-05<br>
 > 귀무가설 기각
 </details>  
 
@@ -687,7 +687,7 @@ print(f"유의미한 영향을 주는 변수의 개수: {len(pvalues[pvalues < 0
 print("R-squared:", model.rsquared)
 
 <br><br>
-> 유의미한 영향을 주는 변수의 개수: 2개
+> 유의미한 영향을 주는 변수의 개수: 2개<br>
 > R-squared: 0.09380851372083054
 </details>  
 
@@ -736,7 +736,7 @@ print(f"모델에 유의미한 영향을 주는 변수의 개수: {len(list(pval
 print("R-squared:", model.rsquared)
 
 <br><br>
-> 모델에 유의미한 영향을 주는 변수의 개수: 0개
+> 모델에 유의미한 영향을 주는 변수의 개수: 0개<br>
 > R-squared: 0.01919543404363533
 </details>  
 
@@ -759,7 +759,7 @@ print("LR Test Statistics:", -2 * (model.llnull - model.llf))<br>
 print("LR Test p-value:", model.llr_pvalue)
 
 <br><br>
-> LR Test Statistics: 44.45408393664076
+> LR Test Statistics: 44.45408393664076<br>
 > LR Test p-value: 4.669023162177591e-07
 </details>  
 

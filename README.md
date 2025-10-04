@@ -706,13 +706,11 @@ answer3
 스마트폰사용시간에 영향을 미치는 요인을 분석하는 회귀모형을 구축하시오. (독립변수: 지역, 평일_인터넷사용시간, 주말_인터넷사용시간)  
 <br>  
 그리고 다음 값을 출력하시오:  
-<br>  
-- 회귀계수(β) 값 전체  
-<br>  
-- p-value 값 전체  
-<br>  
-- 유의미한 변수의 개수  
 </h3>  
+
+<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체</h5>  
+<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
+<h5 style="font-weight:normal;">- 유의미한 변수의 개수</h5>  
 
 <details>  
 <summary>코드</summary>  
@@ -720,20 +718,19 @@ answer3
 
 
 
+<br><br><br><br>
+
 <h3 style="font-weight:normal;">3-2.</h3>  
 <h3 style="font-weight:normal;">  
 소셜미디어이용 여부를 예측하는 로지스틱 회귀모형을 구축하시오. (독립변수: 지역, 평일_인터넷사용시간, 주말_인터넷사용시간, 스마트폰사용시간)  
 <br>  
 그리고 다음 값을 출력하시오:  
-<br>  
-- 회귀계수(β) 값 전체  
-<br>  
-- p-value 값 전체  
-<br>  
-- 유의미한 변수의 개수  
-<br>  
-- 각 변수의 오즈비(odds ratio) 값 전체 (exp(β)로 계산)  
 </h3>  
+
+<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체</h5>  
+<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
+<h5 style="font-weight:normal;">- 유의미한 변수의 개수</h5>  
+<h5 style="font-weight:normal;">- 각 변수의 오즈비(odds ratio) 값 전체 (exp(β)로 계산)</h5>  
 
 <details>  
 <summary>코드</summary>  
@@ -824,13 +821,11 @@ answer3
 업무성과 점수를 종속변수로 설정하고, 독립변수로 부서, 직급, 근속연수, 주당근무시간을 사용하여 다중회귀모형을 구축하시오.  
 <br>  
 그리고 다음 값들을 출력하시오:  
-<br>  
-- 회귀계수(β) 값 전체 출력  
-<br>  
-- p-value 값 전체 출력  
-<br>  
-- 유의미한 변수의 개수 출력 (유의 수준은 0.05로 설정)  
 </h3>  
+
+<h5 style="font-weight:normal;">- 회귀계수(β) 값 전체 출력</h5>  
+<h5 style="font-weight:normal;">- p-value 값 전체 출력</h5>  
+<h5 style="font-weight:normal;">- 유의미한 변수의 개수 출력 (유의 수준은 0.05로 설정)</h5>  
 
 <details>  
 <summary>코드</summary>  
@@ -1019,13 +1014,11 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 연봉에 영향을 주는 요인을 분석하는 회귀모형을 구축하시오. (독립변수는 종속변수를 제외한 모든 변수들을 사용할 것)  
 <br>  
 그리고 다음을 출력하시오:  
-<br>  
-- 회귀계수 (β) 값 전체  
-<br>  
-- p-value 값 전체  
-<br>  
-- 유의미한 변수의 개수 (p-value < 0.05인 변수 개수)  
 </h3>  
+
+<h5 style="font-weight:normal;">- 회귀계수 (β) 값 전체</h5>  
+<h5 style="font-weight:normal;">- p-value 값 전체</h5>  
+<h5 style="font-weight:normal;">- 유의미한 변수의 개수 (p-value &lt; 0.05인 변수 개수)</h5>  
 
 <details>  
 <summary>코드</summary>  
@@ -1050,100 +1043,5 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 <summary>코드</summary>  
 </details>  
 
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">2-3.</h3> <h3 style="font-weight:normal;"> 만성질환유무를 예측하는 로지스틱 회귀모형을 구축하시오. (직업군, 결혼여부, 운동빈도, 수면시간, 스트레스수준을 독립변수로 설정하시오.)<br> 그리고 모형의 전반적 유의성 검정을 위해 LR 검정(Likelihood Ratio Test) 결과를 제시하고, 통계적 유의성을 평가하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">3-1.</h3> <h3 style="font-weight:normal;"> 스마트폰사용시간에 영향을 미치는 요인을 분석하는 회귀모형을 구축하시오. (독립변수: 지역, 평일_인터넷사용시간, 주말_인터넷사용시간)<br> 그리고 다음 값을 출력하시오:<br> - 회귀계수(β) 값 전체<br> - p-value 값 전체<br> - 유의미한 변수의 개수 </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">3-2.</h3> <h3 style="font-weight:normal;"> 소셜미디어이용 여부를 예측하는 로지스틱 회귀모형을 구축하시오. (독립변수: 지역, 평일_인터넷사용시간, 주말_인터넷사용시간, 스마트폰사용시간)<br> 그리고 다음 값을 출력하시오:<br> - 회귀계수(β) 값 전체<br> - p-value 값 전체<br> - 유의미한 변수의 개수<br> - 각 변수의 오즈비(odds ratio) 값 전체 (exp(β)로 계산) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">4-1.</h3> <h3 style="font-weight:normal;"> 성별에 따른 평균 체중에 유의미한 차이가 있는지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">4-2.</h3> <h3 style="font-weight:normal;"> 흡연여부와 운동여부가 독립적인지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">4-3.</h3> <h3 style="font-weight:normal;"> 혈압이 정규성을 만족하는지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">5-1.</h3> <h3 style="font-weight:normal;"> 학력수준에 따라 직무만족도의 평균에 차이가 있는지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">5-2.</h3> <h3 style="font-weight:normal;"> 재택근무 여부와 이직 경험 여부가 독립적인지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">5-3.</h3> <h3 style="font-weight:normal;"> 주당근무시간이 정규성을 만족하는지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">6-1.</h3> <h3 style="font-weight:normal;"> 업무성과 점수를 종속변수로 설정하고, 독립변수로 부서, 직급, 근속연수, 주당근무시간을 사용하여 다중회귀모형을 구축하시오.<br> 그리고 다음 값들을 출력하시오:<br> - 회귀계수(β) 값 전체 출력<br> - p-value 값 전체 출력<br> - 유의미한 변수의 개수 출력 (유의 수준은 0.05로 설정) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">6-2.</h3> <h3 style="font-weight:normal;"> 위에서 구축한 OLS 회귀모형의 잔차(residuals)가 정규성을 만족하는지 검정하시오.<br> 적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">7.</h3> <h3 style="font-weight:normal;"> 두 식이요법 그룹 간 공복 혈당의 평균 차이가 통계적으로 유의한지를 판단하기 위한 적절한 검정을 수행하고,<br> 그때의 검정통계량 값을 구하여라.<br> (단, 양측 검정을 수행하고, 신뢰수준은 **95%**로 하며, 소수 셋째 자리까지 반올림할 것) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">8.</h3> <h3 style="font-weight:normal;"> 세 가지 마케팅 전략 간 고객 지출 금액에 차이가 있는지를 검정하고,<br> 그때의 분산분석 F-통계량 값을 소수 셋째 자리까지 반올림하여 출력하시오. (신뢰수준 95%, 양측 검정) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">9.</h3> <h3 style="font-weight:normal;"> 마케팅 전략, 연령대, 그리고 이들의 상호작용 효과가 고객 지출 금액에 유의한 영향을 주는지를 검정하시오.<br> 각 요인의 분산분석 F-통계량 값을 소수 셋째 자리까지 반올림하여 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">10-1.</h3> <h3 style="font-weight:normal;"> 신약 처치 그룹(Treatment)에 따라 혈압(BloodPressure)의 분산이 달라지는지 판단하고자 한다.<br> Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을 분자로 하는 F-검정을 수행하시오.<br> 그리고 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">10-2.</h3> <h3 style="font-weight:normal;"> 성별(Gender)에 따른 혈당(Glucose) 분산이 동일한지 검정하고,<br> F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오. (분산이 더 큰 쪽을 분자로 사용할 것) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">10-3.</h3> <h3 style="font-weight:normal;"> DrugB 그룹의 혈압(BloodPressure) 분산이 Control 또는 DrugA보다 통계적으로 더 큰지를 보기 위해,<br> DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,<br> 각각의 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">11-1.</h3> <h3 style="font-weight:normal;"> 성별에 따라 키의 평균에 차이가 있는지 검정하시오.<br> 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">11-2.</h3> <h3 style="font-weight:normal;"> 흡연 여부와 운동 여부가 서로 독립적인지 검정하시오.<br> 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">11-3.</h3> <h3 style="font-weight:normal;"> 혈압이 정규성을 만족하는지 검정하시오.<br> 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">11-4.</h3> <h3 style="font-weight:normal;"> 연령대에 따라 체중의 분산이 동일한지 검정하시오.<br> 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">11-5.</h3> <h3 style="font-weight:normal;"> 이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.<br><br> 기대 이론적 분포 (비율 기준):<br> - 20대: 20%<br> - 30대: 30%<br> - 40대: 30%<br> - 50대: 20%<br><br> 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오. </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">12.</h3> <h3 style="font-weight:normal;"> 연봉에 영향을 주는 요인을 분석하는 회귀모형을 구축하시오. (독립변수는 종속변수를 제외한 모든 변수들을 사용할 것)<br> 그리고 다음을 출력하시오:<br> - 회귀계수 (β) 값 전체<br> - p-value 값 전체<br> - 유의미한 변수의 개수 (p-value < 0.05인 변수 개수) </h3> <details> <summary>코드</summary> </details>
-
-<br><br><br><br>
-
-<h3 style="font-weight:normal;">13.</h3> <h3 style="font-weight:normal;"> 이직의도를 예측하는 로지스틱 회귀모형을 적합하고 다음을 출력하시오:<br> - 유의미한 변수의 개수<br> - 오즈비 (odds ratio) 값 전체 (exp(β))<br> - 잔차 이탈도 (Residual Deviance)<br> - 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량) </h3> <details> <summary>코드</summary> </details> </details>
-
+</details>
 

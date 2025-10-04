@@ -1131,13 +1131,13 @@ print("pvalue:", f_p.round(3))
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-# 상호작용 포함 모델
+<span style="color:gray;"># 상호작용 포함 모델</span>
 model = ols("Spending ~ C(Strategy) * C(AgeGroup)", data=df).fit()
 
-# 분산분석 테이블
+<span style="color:gray;"># 분산분석 테이블</span>
 anova = sm.stats.anova_lm(model, typ=2)
 
-# F-통계량 추출 및 출력
+<span style="color:gray;"># F-통계량 추출 및 출력</span>
 print("C(Strategy) statistics:", anova.loc['C(Strategy)', 'F'].round(3))
 print("C(AgeGroup) statistics:", anova.loc['C(AgeGroup)', 'F'].round(3))
 print("Interaction statistics:", anova.loc['C(Strategy):C(AgeGroup)', 'F'].round(3))
@@ -1226,10 +1226,9 @@ else:
 print("F-statistics:", f_stats.round(3))
 print("pvalue:", pvalue.round(3))
 
-# 합동 분산량 계산
+<span style="color:gray;"># 합동 분산량 계산</span>
 pooled_var = ((n1 - 1) * group1_var + (n2 - 1) * group2_var) / (n1 + n2 - 2)
 
-# 출력
 print("합동 분산량 (Pooled Variance):", round(pooled_var, 3))
 </details>  
 
@@ -1295,13 +1294,13 @@ from scipy.stats import shapiro, levene, ttest_ind
 male = df[df['성별'] == '남']['키']
 female = df[df['성별'] == '여']['키']
 
-# print(shapiro(male))
-# print(shapiro(female))
-# -> 두 집단 모두 정규성을 만족한다.
+<span style="color:gray;"># print(shapiro(male))</span>
+<span style="color:gray;"># print(shapiro(female))</span>
+<span style="color:gray;"># -> 두 집단 모두 정규성을 만족한다.</span>
 
 
-# print(levene(male, female))
-# -> 두 집단의 등분산성을 만족하지 않으므로 welch's t-검정을 시행한다.
+<span style="color:gray;"># print(levene(male, female))</span>
+<span style="color:gray;"># -> 두 집단의 등분산성을 만족하지 않으므로 welch's t-검정을 시행한다.</span>
 
 stats, p = ttest_ind(male, female, equal_var=False)
 
@@ -1368,16 +1367,15 @@ print("pvalues:", p)
 <summary>코드</summary>  
 from scipy.stats import levene
 
-# 각 그룹별 체중 데이터 추출
+<span style="color:gray;"># 각 그룹별 체중 데이터 추출</span>
 group_20 = df[df['연령대'] == '20대']['체중']
 group_30 = df[df['연령대'] == '30대']['체중']
 group_40 = df[df['연령대'] == '40대']['체중']
 group_50 = df[df['연령대'] == '50대']['체중']
 
-# Levene 등분산성 검정 수행
+<span style="color:gray;"># Levene 등분산성 검정 수행</span>
 stat, p = levene(group_20, group_30, group_40, group_50)
 
-# 결과 출력
 print("Levene statistics:", stat)
 print("p-value:", p)
 </details>  
@@ -1408,22 +1406,21 @@ print("p-value:", p)
 <summary>코드</summary>  
 from scipy.stats import chisquare
 
-# 관측 빈도 구하기
+<span style="color:gray;"># 관측 빈도 구하기</span>
 observed = df['연령대'].value_counts().reindex(['20대', '30대', '40대', '50대']).values
 
-# 전체 샘플 수
+<span style="color:gray;"># 전체 샘플 수</span>
 total_n = len(df)
 
-# 이론적 기대비율
+<span style="color:gray;"># 이론적 기대비율</span>
 expected_ratio = {'20대': 0.2, '30대': 0.3, '40대': 0.3, '50대': 0.2}
 
-# 기대빈도 계산
+<span style="color:gray;"># 기대빈도 계산</span>
 expected = [total_n * expected_ratio[age] for age in ['20대', '30대', '40대', '50대']]
 
-# 카이제곱 적합도 검정 수행
+<span style="color:gray;"># 카이제곱 적합도 검정 수행</span>
 stat, p = chisquare(f_obs=observed, f_exp=expected)
 
-# 결과 출력
 print("Chi-square statistics:", stat)
 print("p-value:", p)
 </details>  
@@ -1481,21 +1478,21 @@ import numpy as np
 
 model = logit("이직의도 ~ C(전공) + C(학위) + 연구년수 + 연간논문수", data=df).fit()
 
-# 유의미한 변수의 개수 (p-value < 0.05인 변수 개수)
+<span style="color:gray;"># 유의미한 변수의 개수 (p-value < 0.05인 변수 개수)</span>
 target_num = len(pvalue[pvalue < 0.05])
 print("\n")
 print(f"유의미한 변수의 개수: {target_num}개")
 print("\n")
 
-# 오즈비 (odds ratio) 값 전체 (exp(β))
+<span style="color:gray;"># 오즈비 (odds ratio) 값 전체 (exp(β))</span>
 print("odds ratio:\n", np.exp(model.params[1:]))
 print("\n")
 
-# 잔차 이탈도 (Residual Deviance)
+<span style="color:gray;"># 잔차 이탈도 (Residual Deviance)</span>
 print("Residual Deviance:", -2 * model.llf)
 print("\n")
 
-# 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)
+<span style="color:gray;"># 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)</span>
 print("LR test statistics:", -2 * (model.llnull - model.llf))
 </details>    
 

@@ -818,40 +818,33 @@ print(np.exp(model.params[1:]))
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu
-
-male = df[df['성별'] == '남']['체중'].reset_index(drop=True)
-female = df[df['성별'] == '여']['체중'].reset_index(drop=True)
-
-male_stat, male_p = shapiro(male)
-female_stat, female_p = shapiro(female)
-
-if (male_p >= 0.05) & (female_p >= 0.05):
-    print("두 집단이 정규성을 만족함")
-
-    l_stat, l_p = levene(male, female)
-
-    if l_p >= 0.05:
-        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")
-        t_stat, t_p = ttest_ind(male, female)
-        print("검정통계량:", t_stat)
-        print("pvalues:", t_p)
-    else:
-        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")
-        t_stat, t_p = ttest_ind(male, female, equal_var=False)
-        print("검정통계량:", t_stat)
-        print("pvalues:", t_p)        
-
-else:
-    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")
-    u_stat, u_p = mannwhitneyu(male, female)
-    print("검정통계량:", u_stat)
+from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu<br><br>
+male = df[df['성별'] == '남']['체중'].reset_index(drop=True)<br>
+female = df[df['성별'] == '여']['체중'].reset_index(drop=True)<br><br>
+male_stat, male_p = shapiro(male)<br>
+female_stat, female_p = shapiro(female)<br><br>
+if (male_p >= 0.05) & (female_p >= 0.05):<br>
+    print("두 집단이 정규성을 만족함")<br><br>
+    l_stat, l_p = levene(male, female)<br><br>
+    if l_p >= 0.05:<br>
+        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")<br>
+        t_stat, t_p = ttest_ind(male, female)<br>
+        print("검정통계량:", t_stat)<br>
+        print("pvalues:", t_p)<br>
+    else:<br>
+        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")<br>
+        t_stat, t_p = ttest_ind(male, female, equal_var=False)<br>
+        print("검정통계량:", t_stat)<br>
+        print("pvalues:", t_p)<br><br>
+else:<br>
+    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")<br>
+    u_stat, u_p = mannwhitneyu(male, female)<br>
+    print("검정통계량:", u_stat)<br>
     print("pvalues:", u_p)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">4-2.</h3>  
@@ -863,17 +856,38 @@ else:
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import chi2_contingency
-
-cdf = pd.crosstab(df['흡연여부'], df['운동여부'])
-chi2_stats, chi2_p, ddof, expected = chi2_contingency(cdf)
-print("Statistics:", chi2_stats)
+from scipy.stats import chi2_contingency<br><br>
+cdf = pd.crosstab(df['흡연여부'], df['운동여부'])<br>
+chi2_stats, chi2_p, ddof, expected = chi2_contingency(cdf)<br>
+print("Statistics:", chi2_stats)<br>
 print("p-values:", chi2_p)
 </details>  
 
 
 <br><br><br><br>
 
+
+<h3 style="font-weight:normal;">4-3.</h3>  
+<h3 style="font-weight:normal;">  
+혈압이 정규성을 만족하는지 검정하시오.  
+<br>  
+적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오.  
+</h3>  
+
+<details>  
+<summary>코드</summary>  
+from scipy.stats import shapiro<br><br>
+stat, p = shapiro(df['혈압'])<br>
+print("statictis:", stat)<br>
+print("p-value:", p)<br><br>
+if p < 0.05:<br>
+    print("정규성 불만족")<br>
+else:<br>
+    print("정규성 만족")
+</details>  
+
+
+<br><br><br><br>
 
 
 <h3 style="font-weight:normal;">5-1.</h3>  
@@ -885,27 +899,21 @@ print("p-values:", chi2_p)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro, levene, f_oneway
-
-for group in df['학력수준'].unique():
-    stat, p = shapiro(df[df['학력수준'] == group]['직무만족도'])
-    print(f"[{group}] 정규성검정 p-value: {p}")
-
-
-from scipy.stats import levene
-
-groups = [df[df['학력수준'] == g]['직무만족도'] for g in df['학력수준'].unique()]
-stat, p = levene(*groups)
-print("등분산성 검정 p-value:", p)
-
-stat, p = f_oneway(*groups)
-print("ANOVA stats:", stat)
+from scipy.stats import shapiro, levene, f_oneway<br><br>
+for group in df['학력수준'].unique():<br>
+    stat, p = shapiro(df[df['학력수준'] == group]['직무만족도'])<br>
+    print(f"[{group}] 정규성검정 p-value: {p}")<br><br>
+from scipy.stats import levene<br><br>
+groups = [df[df['학력수준'] == g]['직무만족도'] for g in df['학력수준'].unique()]<br>
+stat, p = levene(*groups)<br>
+print("등분산성 검정 p-value:", p)<br><br>
+stat, p = f_oneway(*groups)<br>
+print("ANOVA stats:", stat)<br>
 print("ANOVA p-value:", p)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">5-2.</h3>  
@@ -917,19 +925,15 @@ print("ANOVA p-value:", p)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import chi2_contingency
-
-cdf = pd.crosstab(df['재택근무여부'], df['이직경험여부'])
-
-chi2_stats, p, ddof, expected = chi2_contingency(cdf)
-
-print("chi2_stats:", chi2_stats)
+from scipy.stats import chi2_contingency<br><br>
+cdf = pd.crosstab(df['재택근무여부'], df['이직경험여부'])<br>
+chi2_stats, p, ddof, expected = chi2_contingency(cdf)<br><br>
+print("chi2_stats:", chi2_stats)<br>
 print("p-value:", p)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">5-3.</h3>  
@@ -941,21 +945,18 @@ print("p-value:", p)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro
-
-stat, p = shapiro(df['주당근무시간'])
-print("statictis:", stat)
-print("p-value:", p)
-
-if p < 0.05:
-    print("정규성 불만족")
-else:
+from scipy.stats import shapiro<br><br>
+stat, p = shapiro(df['주당근무시간'])<br>
+print("statictis:", stat)<br>
+print("p-value:", p)<br><br>
+if p < 0.05:<br>
+    print("정규성 불만족")<br>
+else:<br>
     print("정규성 만족")
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">6-1.</h3>  
@@ -971,25 +972,21 @@ else:
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import ols
-
-model = ols("업무성과점수 ~ C(부서) + C(직급) + 근속연수 + 주당근무시간", data=df).fit()
-
-print("회귀계수 값:")
-print(model.params[1:])
-print("\n")
-print("p-value 값:")
-print(model.pvalues[1:])
-print("\n")
-
-pvalues = model.pvalues[1:]
-significant_pvalue = len(pvalues[pvalues < 0.05])
+from statsmodels.formula.api import ols<br><br>
+model = ols("업무성과점수 ~ C(부서) + C(직급) + 근속연수 + 주당근무시간", data=df).fit()<br><br>
+print("회귀계수 값:")<br>
+print(model.params[1:])<br>
+print("\n")<br>
+print("p-value 값:")<br>
+print(model.pvalues[1:])<br>
+print("\n")<br>
+pvalues = model.pvalues[1:]<br>
+significant_pvalue = len(pvalues[pvalues < 0.05])<br>
 print("유의미한 변수 개수:", significant_pvalue)
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">6-2.</h3>  
@@ -1001,20 +998,16 @@ print("유의미한 변수 개수:", significant_pvalue)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro
-
-residuals = model.resid
-stat, p = shapiro(residuals)
-
-if p < 0.05:
-    print("정규분포 불만족")
-else:
-    print("정규분포 만족")
-
-print("statistics:", stat)
+from scipy.stats import shapiro<br><br>
+residuals = model.resid<br>
+stat, p = shapiro(residuals)<br><br>
+if p < 0.05:<br>
+    print("정규분포 불만족")<br>
+else:<br>
+    print("정규분포 만족")<br><br>
+print("statistics:", stat)<br>
 print("p-value:", p)
 </details>  
-
 
 <br><br><br><br>
 

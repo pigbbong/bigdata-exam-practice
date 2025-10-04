@@ -848,7 +848,6 @@ print(len(pvalues[pvalues < 0.05]))<br>
 print("\n")<br>
 print("오즈비:")<br>
 print(np.exp(model.params[1:]))
-</details>  
 
 <br><br>
 회귀계수 값: <br>
@@ -884,6 +883,8 @@ C(지역)[T.서울]    0.488633 <br>
 평일_인터넷사용시간     1.043248 <br>
 주말_인터넷사용시간     1.395379 <br>
 스마트폰사용시간       1.626576 
+
+</details>  
 
 <br><br><br><br>
 

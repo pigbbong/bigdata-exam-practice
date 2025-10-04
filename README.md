@@ -986,7 +986,7 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 
 <h3 style="font-weight:normal;">11-5.</h3>  
 <h3 style="font-weight:normal;">  
-이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.  
+이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.  </h3>
 <br>  
 <br>  
 기대 이론적 분포 (비율 기준):  
@@ -1000,6 +1000,7 @@ DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,
 - 50대: 20%</h5>
 <br>  
 <br>  
+<h3 style="font-weight:normal;">  
 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오.  
 </h3>  
 

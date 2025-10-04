@@ -1234,16 +1234,14 @@ print("p-value:", p)
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import ols
-
-model = ols("연봉 ~ C(전공) + C(학위) + 연구년수 + 연간논문수", data=df).fit()
-
-print(model.params[1:])
-print("\n")
-print(model.pvalues[1:])
-print("\n")
-pvalues = model.pvalues[1:]
-target_num = len(pvalues[pvalues < 0.05])
+from statsmodels.formula.api import ols<br><br>
+model = ols("연봉 ~ C(전공) + C(학위) + 연구년수 + 연간논문수", data=df).fit()<br><br>
+print(model.params[1:])<br>
+print("\n")<br>
+print(model.pvalues[1:])<br>
+print("\n")<br><br>
+pvalues = model.pvalues[1:]<br>
+target_num = len(pvalues[pvalues < 0.05])<br>
 print("유의미한 변수의 개수:", target_num)
 </details>  
 
@@ -1264,29 +1262,23 @@ print("유의미한 변수의 개수:", target_num)
 
 <details>  
 <summary>코드</summary>  
-from statsmodels.formula.api import logit
-import numpy as np
-
-model = logit("이직의도 ~ C(전공) + C(학위) + 연구년수 + 연간논문수", data=df).fit()
-
-<span style="color:gray;"># 유의미한 변수의 개수 (p-value < 0.05인 변수 개수)</span>
-target_num = len(pvalue[pvalue < 0.05])
-print("\n")
-print(f"유의미한 변수의 개수: {target_num}개")
-print("\n")
-
-<span style="color:gray;"># 오즈비 (odds ratio) 값 전체 (exp(β))</span>
-print("odds ratio:\n", np.exp(model.params[1:]))
-print("\n")
-
-<span style="color:gray;"># 잔차 이탈도 (Residual Deviance)</span>
-print("Residual Deviance:", -2 * model.llf)
-print("\n")
-
-<span style="color:gray;"># 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)</span>
+from statsmodels.formula.api import logit<br>
+import numpy as np<br><br>
+model = logit("이직의도 ~ C(전공) + C(학위) + 연구년수 + 연간논문수", data=df).fit()<br><br>
+<span style="color:gray;"># 유의미한 변수의 개수 (p-value < 0.05인 변수 개수)</span><br>
+target_num = len(pvalue[pvalue < 0.05])<br>
+print("\n")<br>
+print(f"유의미한 변수의 개수: {target_num}개")<br>
+print("\n")<br><br>
+<span style="color:gray;"># 오즈비 (odds ratio) 값 전체 (exp(β))</span><br>
+print("odds ratio:\n", np.exp(model.params[1:]))<br>
+print("\n")<br><br>
+<span style="color:gray;"># 잔차 이탈도 (Residual Deviance)</span><br>
+print("Residual Deviance:", -2 * model.llf)<br>
+print("\n")<br><br>
+<span style="color:gray;"># 이탈도 차이 기반의 모형 적합도 검정 (LR test 통계량)</span><br>
 print("LR test statistics:", -2 * (model.llnull - model.llf))
-</details>    
-
+</details>  
 
 </details>
 

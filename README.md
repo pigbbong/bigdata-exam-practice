@@ -1024,41 +1024,29 @@ print("p-value:", p)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro, levene, mannwhitneyu, ttest_ind
-
-group1 = df[df['DietGroup'] == 'A']['Glucose']
-group2 = df[df['DietGroup'] == 'B']['Glucose']
-
-<span style="color:gray;"># 정규성 검정</span>
-
-stat1, p1 = shapiro(group1)
-stat2, p2 = shapiro(group2)
-
-if p1 >= 0.05 and p2 >= 0.05:
-print("두 집단의 정규성이 만족됨")
-else:
-print("정규성을 만족하지 않는 집단이 있음")
-
-<span style="color:gray;"># 등분산성 검정</span>
-
-l_stat, l_p = levene(group1, group2)
-
-if l_p >= 0.05:
-print("두 집단의 등분산성을 이루고 있음")
-else:
-print("두 집단이 등분산성을 만족하지 않음")
-
-<span style="color:gray;"># 독립표본 t-검정 시행</span>
-
-t_stat, t_p = ttest_ind(group2, group1)
-
+from scipy.stats import shapiro, levene, mannwhitneyu, ttest_ind<br><br>
+group1 = df[df['DietGroup'] == 'A']['Glucose']<br>
+group2 = df[df['DietGroup'] == 'B']['Glucose']<br><br>
+<span style="color:gray;"># 정규성 검정</span><br>
+stat1, p1 = shapiro(group1)<br>
+stat2, p2 = shapiro(group2)<br><br>
+if p1 >= 0.05 and p2 >= 0.05:<br>
+    print("두 집단의 정규성이 만족됨")<br>
+else:<br>
+    print("정규성을 만족하지 않는 집단이 있음")<br><br>
+<span style="color:gray;"># 등분산성 검정</span><br>
+l_stat, l_p = levene(group1, group2)<br><br>
+if l_p >= 0.05:<br>
+    print("두 집단의 등분산성을 이루고 있음")<br>
+else:<br>
+    print("두 집단이 등분산성을 만족하지 않음")<br><br>
+<span style="color:gray;"># 독립표본 t-검정 시행</span><br>
+t_stat, t_p = ttest_ind(group2, group1)<br><br>
 print(t_stat.round(3))
-
-</details>
+</details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">8.</h3>  
@@ -1072,20 +1060,17 @@ print(t_stat.round(3))
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import f_oneway
-
-group1 = df[df['Strategy'] == 'A']['Spending']
-group2 = df[df['Strategy'] == 'B']['Spending']
-group3 = df[df['Strategy'] == 'C']['Spending']
-
-f_stats, f_p = f_oneway(group1, group2, group3)
-print("F-통계량:", f_stats.round(3))
+from scipy.stats import f_oneway<br><br>
+group1 = df[df['Strategy'] == 'A']['Spending']<br>
+group2 = df[df['Strategy'] == 'B']['Spending']<br>
+group3 = df[df['Strategy'] == 'C']['Spending']<br><br>
+f_stats, f_p = f_oneway(group1, group2, group3)<br>
+print("F-통계량:", f_stats.round(3))<br>
 print("pvalue:", f_p.round(3))
 </details>  
 
 
 <br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">9.</h3>  
@@ -1097,68 +1082,20 @@ print("pvalue:", f_p.round(3))
 
 <details>  
 <summary>코드</summary>  
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-
-<span style="color:gray;"># 상호작용 포함 모델</span>
-model = ols("Spending ~ C(Strategy) * C(AgeGroup)", data=df).fit()
-
-<span style="color:gray;"># 분산분석 테이블</span>
-anova = sm.stats.anova_lm(model, typ=2)
-
-<span style="color:gray;"># F-통계량 추출 및 출력</span>
-print("C(Strategy) statistics:", anova.loc['C(Strategy)', 'F'].round(3))
-print("C(AgeGroup) statistics:", anova.loc['C(AgeGroup)', 'F'].round(3))
+import statsmodels.api as sm<br>
+from statsmodels.formula.api import ols<br><br>
+<span style="color:gray;"># 상호작용 포함 모델</span><br>
+model = ols("Spending ~ C(Strategy) * C(AgeGroup)", data=df).fit()<br><br>
+<span style="color:gray;"># 분산분석 테이블</span><br>
+anova = sm.stats.anova_lm(model, typ=2)<br><br>
+<span style="color:gray;"># F-통계량 추출 및 출력</span><br>
+print("C(Strategy) statistics:", anova.loc['C(Strategy)', 'F'].round(3))<br>
+print("C(AgeGroup) statistics:", anova.loc['C(AgeGroup)', 'F'].round(3))<br>
 print("Interaction statistics:", anova.loc['C(Strategy):C(AgeGroup)', 'F'].round(3))
 </details>  
 
 
 <br><br><br><br>
-
-
-<h3 style="font-weight:normal;">10-1.</h3>  
-<h3 style="font-weight:normal;">  
-신약 처치 그룹(Treatment)에 따라 혈압(BloodPressure)의 분산이 달라지는지 판단하고자 한다.  
-<br>  
-Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을 분자로 하는 F-검정을 수행하시오.  
-<br>  
-그리고 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오.  
-</h3>  
-
-<details>  
-<summary>코드</summary>  
-import numpy as np
-from scipy.stats import f
-
-group1 = df[df['Treatment'] == 'Control']['BloodPressure']
-group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']
-group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']
-
-group2_var = np.var(group2, ddof=1)
-group3_var = np.var(group3, ddof=1)
-
-n2 = len(group2)
-n3 = len(group3)
-
-if group2_var > group3_var:
-    f_stats = group2_var / group3_var
-    df2 = n2 - 1
-    df3 = n3 - 1
-    pvalue = f.sf(f_stats, df2, df3)
-else:
-    f_stats = group3_var / group2_var
-    df2 = n2 - 1
-    df3 = n3 - 1
-    pvalue = f.sf(f_stats, df3, df2)
-
-
-print("F_statistics:", f_stats.round(3))
-print("p-value:", pvalue.round(3))
-</details>  
-
-
-<br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">10-2.</h3>  
@@ -1170,83 +1107,31 @@ F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오
 
 <details>  
 <summary>코드</summary>  
-import numpy as np
-from scipy.stats import f
-
-group1 = df[df['Gender'] == 'Male']['Glucose']
-group2 = df[df['Gender'] == 'Female']['Glucose']
-
-group1_var = np.var(group1, ddof=1)
-group2_var = np.var(group2, ddof=1)
-
-n1 = len(group1)
-n2 = len(group2)
-
-df1 = n1 - 1
-df2 = n2 - 1
-
-if group1_var > group2_var:
-    f_stats = group1_var / group2_var
-    pvalue = f.sf(f_stats, df1, df2)
-else:
-    f_stats = group2_var / group1_var
-    pvalue = f.sf(f_stats, df2, df1)
-
-print("F-statistics:", f_stats.round(3))
-print("pvalue:", pvalue.round(3))
-
-<span style="color:gray;"># 합동 분산량 계산</span>
-pooled_var = ((n1 - 1) * group1_var + (n2 - 1) * group2_var) / (n1 + n2 - 2)
-
+import numpy as np<br>
+from scipy.stats import f<br><br>
+group1 = df[df['Gender'] == 'Male']['Glucose']<br>
+group2 = df[df['Gender'] == 'Female']['Glucose']<br><br>
+group1_var = np.var(group1, ddof=1)<br>
+group2_var = np.var(group2, ddof=1)<br><br>
+n1 = len(group1)<br>
+n2 = len(group2)<br><br>
+df1 = n1 - 1<br>
+df2 = n2 - 1<br><br>
+if group1_var > group2_var:<br>
+    f_stats = group1_var / group2_var<br>
+    pvalue = f.sf(f_stats, df1, df2)<br>
+else:<br>
+    f_stats = group2_var / group1_var<br>
+    pvalue = f.sf(f_stats, df2, df1)<br><br>
+print("F-statistics:", f_stats.round(3))<br>
+print("pvalue:", pvalue.round(3))<br><br>
+<span style="color:gray;"># 합동 분산량 계산</span><br>
+pooled_var = ((n1 - 1) * group1_var + (n2 - 1) * group2_var) / (n1 + n2 - 2)<br><br>
 print("합동 분산량 (Pooled Variance):", round(pooled_var, 3))
 </details>  
 
 
 <br><br><br><br>
-
-
-
-<h3 style="font-weight:normal;">10-3.</h3>  
-<h3 style="font-weight:normal;">  
-DrugB 그룹의 혈압(BloodPressure) 분산이 Control 또는 DrugA보다 통계적으로 더 큰지를 보기 위해,  
-<br>  
-DrugB-Control, DrugB-DrugA 두 쌍에 대해 각각 F-검정을 수행하고,  
-<br>  
-각각의 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오.  
-</h3>  
-
-<details>  
-<summary>코드</summary>  
-import numpy as np
-
-group1 = df[df['Treatment'] == 'DrugB']['BloodPressure']
-group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']
-group3 = df[df['Treatment'] == 'Control']['BloodPressure']
-
-group1_var = np.var(group1, ddof=1)
-group2_var = np.var(group2, ddof=1)
-group3_var = np.var(group3, ddof=1)
-
-
-print("DrugB와 DrugA의 F검정통계량:", (group1_var / group2_var).round(3))
-
-if group1_var / group2_var > 1.0:
-    print("DrugB의 검정통계량이 DrugA보다 크다.", end='\n\n')
-else:
-    print("DrugB의 분산이 DrugA보다 작다.", end='\n\n')
-
-
-print("DrugB와 Control의 F검정통계량:", (group1_var / group3_var).round(3))
-
-if group1_var / group3_var > 1.0:
-    print("DrugB의 검정통계량이 Control보다 크다.")
-else:
-    print("DrugB의 분산이 Control보다 작다.")
-</details>  
-
-
-<br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">11-1.</h3>  
@@ -1258,71 +1143,21 @@ else:
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro, levene, ttest_ind
-
-male = df[df['성별'] == '남']['키']
-female = df[df['성별'] == '여']['키']
-
-<span style="color:gray;"># print(shapiro(male))</span>
-<span style="color:gray;"># print(shapiro(female))</span>
-<span style="color:gray;"># -> 두 집단 모두 정규성을 만족한다.</span>
-
-
-<span style="color:gray;"># print(levene(male, female))</span>
-<span style="color:gray;"># -> 두 집단의 등분산성을 만족하지 않으므로 welch's t-검정을 시행한다.</span>
-
-stats, p = ttest_ind(male, female, equal_var=False)
-
-print("statistics:", stats)
+from scipy.stats import shapiro, levene, ttest_ind<br><br>
+male = df[df['성별'] == '남']['키']<br>
+female = df[df['성별'] == '여']['키']<br><br>
+<span style="color:gray;"># print(shapiro(male))</span><br>
+<span style="color:gray;"># print(shapiro(female))</span><br>
+<span style="color:gray;"># -> 두 집단 모두 정규성을 만족한다.</span><br><br>
+<span style="color:gray;"># print(levene(male, female))</span><br>
+<span style="color:gray;"># -> 두 집단의 등분산성을 만족하지 않으므로 welch's t-검정을 시행한다.</span><br><br>
+stats, p = ttest_ind(male, female, equal_var=False)<br><br>
+print("statistics:", stats)<br>
 print("pvalue:", p)
 </details>  
 
 
 <br><br><br><br>
-
-
-
-<h3 style="font-weight:normal;">11-2.</h3>  
-<h3 style="font-weight:normal;">  
-흡연 여부와 운동 여부가 서로 독립적인지 검정하시오.  
-<br>  
-적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오.  
-</h3>  
-
-<details>  
-<summary>코드</summary>  
-from scipy.stats import chi2_contingency
-
-cdf = pd.crosstab(df['흡연여부'], df['운동여부'])
-chi2_stats, chi2_p, _, _ = chi2_contingency(cdf)
-print("statistics:", chi2_stats)
-print("pvalues:", chi2_p)
-</details>  
-
-
-<br><br><br><br>
-
-
-<h3 style="font-weight:normal;">11-3.</h3>  
-<h3 style="font-weight:normal;">  
-혈압이 정규성을 만족하는지 검정하시오.  
-<br>  
-적절한 검정을 선택하여 수행하고, 검정 통계량과 p-value를 출력하시오.  
-</h3>  
-
-<details>  
-<summary>코드</summary>  
-from scipy.stats import shapiro
-
-blpr = df['혈압']
-stat, p = shapiro(blpr)
-print("statistics:", stat)
-print("pvalues:", p)
-</details>  
-
-
-<br><br><br><br>
-
 
 
 <h3 style="font-weight:normal;">11-4.</h3>  
@@ -1334,18 +1169,15 @@ print("pvalues:", p)
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import levene
-
-<span style="color:gray;"># 각 그룹별 체중 데이터 추출</span>
-group_20 = df[df['연령대'] == '20대']['체중']
-group_30 = df[df['연령대'] == '30대']['체중']
-group_40 = df[df['연령대'] == '40대']['체중']
-group_50 = df[df['연령대'] == '50대']['체중']
-
-<span style="color:gray;"># Levene 등분산성 검정 수행</span>
-stat, p = levene(group_20, group_30, group_40, group_50)
-
-print("Levene statistics:", stat)
+from scipy.stats import levene<br><br>
+<span style="color:gray;"># 각 그룹별 체중 데이터 추출</span><br>
+group_20 = df[df['연령대'] == '20대']['체중']<br>
+group_30 = df[df['연령대'] == '30대']['체중']<br>
+group_40 = df[df['연령대'] == '40대']['체중']<br>
+group_50 = df[df['연령대'] == '50대']['체중']<br><br>
+<span style="color:gray;"># Levene 등분산성 검정 수행</span><br>
+stat, p = levene(group_20, group_30, group_40, group_50)<br><br>
+print("Levene statistics:", stat)<br>
 print("p-value:", p)
 </details>  
 
@@ -1353,12 +1185,10 @@ print("p-value:", p)
 <br><br><br><br>
 
 
-
 <h3 style="font-weight:normal;">11-5.</h3>  
 <h3 style="font-weight:normal;">  
 이 데이터셋에서 연령대 변수의 분포가 다음 이론적 분포와 일치하는지 검정하시오.  
 </h3>  
-<br>  
 <br>  
 기대 이론적 분포 (비율 기준):  
 <h4 style="font-weight:normal;">- 20대: 20%</h4>  
@@ -1366,34 +1196,26 @@ print("p-value:", p)
 <h4 style="font-weight:normal;">- 40대: 30%</h4>  
 <h4 style="font-weight:normal;">- 50대: 20%</h4>  
 <br>  
-<br>  
 <h3 style="font-weight:normal;">  
 적절한 검정을 수행하고, 검정 통계량과 p-value를 출력하시오.  
 </h3>  
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import chisquare
-
-<span style="color:gray;"># 관측 빈도 구하기</span>
-observed = df['연령대'].value_counts().reindex(['20대', '30대', '40대', '50대']).values
-
-<span style="color:gray;"># 전체 샘플 수</span>
-total_n = len(df)
-
-<span style="color:gray;"># 이론적 기대비율</span>
-expected_ratio = {'20대': 0.2, '30대': 0.3, '40대': 0.3, '50대': 0.2}
-
-<span style="color:gray;"># 기대빈도 계산</span>
-expected = [total_n * expected_ratio[age] for age in ['20대', '30대', '40대', '50대']]
-
-<span style="color:gray;"># 카이제곱 적합도 검정 수행</span>
-stat, p = chisquare(f_obs=observed, f_exp=expected)
-
-print("Chi-square statistics:", stat)
+from scipy.stats import chisquare<br><br>
+<span style="color:gray;"># 관측 빈도 구하기</span><br>
+observed = df['연령대'].value_counts().reindex(['20대', '30대', '40대', '50대']).values<br><br>
+<span style="color:gray;"># 전체 샘플 수</span><br>
+total_n = len(df)<br><br>
+<span style="color:gray;"># 이론적 기대비율</span><br>
+expected_ratio = {'20대': 0.2, '30대': 0.3, '40대': 0.3, '50대': 0.2}<br><br>
+<span style="color:gray;"># 기대빈도 계산</span><br>
+expected = [total_n * expected_ratio[age] for age in ['20대', '30대', '40대', '50대']]<br><br>
+<span style="color:gray;"># 카이제곱 적합도 검정 수행</span><br>
+stat, p = chisquare(f_obs=observed, f_exp=expected)<br><br>
+print("Chi-square statistics:", stat)<br>
 print("p-value:", p)
 </details>  
-
 
 <br><br><br><br>
 

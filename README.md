@@ -842,16 +842,15 @@ answer3
 
 <details>  
 <summary>코드</summary>  
-```python
 from scipy.stats import chi2_contingency<br><br>
 cdf = pd.crosstab(df['연령대'], df['질병유무'])<br>
 chi2_stats, p, _, _ = chi2_contingency(cdf)<br>
 print("검정통계량:", chi2_stats)<br>
 print("p_values:", p)<br><br>
 if p < 0.05:<br>
-    print("귀무가설 기각")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 기각")<br>
 else:<br>
-    print("귀무가설 채택")
+    &nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 채택")
 
 <br><br>
 
@@ -901,9 +900,9 @@ from scipy.stats import chi2_contingency<br><br>
 cdf = pd.crosstab(df['직업군'], df['만성질환유무'])<br>
 chi2_stats, p, ddof, expected = chi2_contingency(cdf)<br><br>
 if p < 0.05:<br>
-    print("직업군에 따른 만성질환유무는 서로 연관되어있음")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("직업군에 따른 만성질환유무는 서로 연관되어있음")<br>
 else:<br>
-    print("직업군에 따라 만성질환유무는 서로 관계가 없음")
+    &nbsp;&nbsp;&nbsp;&nbsp;print("직업군에 따라 만성질환유무는 서로 관계가 없음")
 
 <br><br>
 > 직업군에 따른 만성질환유무는 서로 연관되어있음
@@ -1092,38 +1091,36 @@ print(np.exp(model.params[1:]))
 
 <details>  
 <summary>코드</summary>  
-	
-```python
-from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu
 
-male = df[df['성별'] == '남']['체중'].reset_index(drop=True)
-female = df[df['성별'] == '여']['체중'].reset_index(drop=True)
+from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu<br><br>
 
-male_stat, male_p = shapiro(male)
-female_stat, female_p = shapiro(female)
+male = df[df['성별'] == '남']['체중'].reset_index(drop=True)<br>
+female = df[df['성별'] == '여']['체중'].reset_index(drop=True)<br><br>
 
-if (male_p >= 0.05) & (female_p >= 0.05):
-    print("두 집단이 정규성을 만족함")
+male_stat, male_p = shapiro(male)<br>
+female_stat, female_p = shapiro(female)<br><br>
 
-    l_stat, l_p = levene(male, female)
+if (male_p >= 0.05) & (female_p >= 0.05):<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단이 정규성을 만족함")<br><br>
 
-    if l_p >= 0.05:
-        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")
-        t_stat, t_p = ttest_ind(male, female)
-        print("검정통계량:", t_stat)
-        print("pvalues:", t_p)
-    else:
-        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")
-        t_stat, t_p = ttest_ind(male, female, equal_var=False)
-        print("검정통계량:", t_stat)
-        print("pvalues:", t_p)
+    &nbsp;&nbsp;&nbsp;&nbsp;l_stat, l_p = levene(male, female)<br><br>
 
-else:
-    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")
-    u_stat, u_p = mannwhitneyu(male, female)
-    print("검정통계량:", u_stat)
-    print("pvalues:", u_p)
-```
+    &nbsp;&nbsp;&nbsp;&nbsp;if l_p >= 0.05:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_stat, t_p = ttest_ind(male, female)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", t_stat)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", t_p)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_stat, t_p = ttest_ind(male, female, equal_var=False)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", t_stat)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", t_p)<br>
+else:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;u_stat, u_p = mannwhitneyu(male, female)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", u_stat)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", u_p)
+
 <br><br>
 
 > 두 집단이 정규성을 만족함<br>

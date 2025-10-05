@@ -1429,36 +1429,9 @@ Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을
 </h3>  
 
 <details>  
-<summary>코드</summary>  
-```python
-import numpy as np
-from scipy.stats import f
-
-group1 = df[df['Treatment'] == 'Control']['BloodPressure']
-group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']
-group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']
-
-group2_var = np.var(group2, ddof=1)
-group3_var = np.var(group3, ddof=1)
-
-n2 = len(group2)
-n3 = len(group3)
-
-if group2_var > group3_var:
-    f_stats = group2_var / group3_var
-    df2 = n2 - 1
-    df3 = n3 - 1
-    pvalue = f.sf(f_stats, df2, df3)
-else:
-    f_stats = group3_var / group2_var
-    df2 = n2 - 1
-    df3 = n3 - 1
-    pvalue = f.sf(f_stats, df3, df2)
-
-print("F_statistics:", f_stats.round(3))
-print("p-value:", pvalue.round(3))
-	
-<br><br>
+<summary>코드</summary> 
+import numpy as np<br> 
+from scipy.stats import f<br><br> group1 = df[df['Treatment'] == 'Control']['BloodPressure']<br> group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']<br> group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']<br><br> group2_var = np.var(group2, ddof=1)<br> group3_var = np.var(group3, ddof=1)<br><br> n2 = len(group2)<br> n3 = len(group3)<br><br> if group2_var > group3_var:<br> f_stats = group2_var / group3_var<br> df2 = n2 - 1<br> df3 = n3 - 1<br> pvalue = f.sf(f_stats, df2, df3)<br> else:<br> f_stats = group3_var / group2_var<br> df2 = n2 - 1<br> df3 = n3 - 1<br> pvalue = f.sf(f_stats, df3, df2)<br><br> print("F_statistics:", f_stats.round(3))<br> print("p-value:", pvalue.round(3)) <br><br>
 >F_statistics: 1.946<br>
 >p-value: 0.012
 </details>  

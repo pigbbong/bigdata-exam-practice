@@ -842,6 +842,7 @@ answer3
 
 <details>  
 <summary>코드</summary>  
+```python
 from scipy.stats import chi2_contingency<br><br>
 cdf = pd.crosstab(df['연령대'], df['질병유무'])<br>
 chi2_stats, p, _, _ = chi2_contingency(cdf)<br>
@@ -851,7 +852,7 @@ if p < 0.05:<br>
     print("귀무가설 기각")<br>
 else:<br>
     print("귀무가설 채택")
-
+```
 <br><br>
 > 검정통계량: 24.71328589749828<br>
 > p_values: 1.7725414243948196e-05<br>

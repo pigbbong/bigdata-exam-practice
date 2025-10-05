@@ -1098,23 +1098,23 @@ female = df[df['성별'] == '여']['체중'].reset_index(drop=True)<br><br>
 male_stat, male_p = shapiro(male)<br>
 female_stat, female_p = shapiro(female)<br><br>
 if (male_p >= 0.05) & (female_p >= 0.05):<br>
-    print("두 집단이 정규성을 만족함")<br><br>
-    l_stat, l_p = levene(male, female)<br><br>
-    if l_p >= 0.05:<br>
-        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")<br>
-        t_stat, t_p = ttest_ind(male, female)<br>
-        print("검정통계량:", t_stat)<br>
-        print("pvalues:", t_p)<br>
-    else:<br>
-        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")<br>
-        t_stat, t_p = ttest_ind(male, female, equal_var=False)<br>
-        print("검정통계량:", t_stat)<br>
-        print("pvalues:", t_p)<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단이 정규성을 만족함")<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;l_stat, l_p = levene(male, female)<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;if l_p >= 0.05:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_stat, t_p = ttest_ind(male, female)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", t_stat)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", t_p)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;else:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_stat, t_p = ttest_ind(male, female, equal_var=False)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", t_stat)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", t_p)<br>
 else:<br>
-    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")<br>
-    u_stat, u_p = mannwhitneyu(male, female)<br>
-    print("검정통계량:", u_stat)<br>
-    print("pvalues:", u_p)
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;u_stat, u_p = mannwhitneyu(male, female)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("검정통계량:", u_stat)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("pvalues:", u_p)
 
 <br><br>
 

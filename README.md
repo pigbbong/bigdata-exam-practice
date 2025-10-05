@@ -20,12 +20,13 @@ CSV 파일 번호를 문제 번호에 맞춰서 푸시면 됩니다. ex) 1번 �
 
 <details>
 <summary>코드</summary>
+
 df['사망률'] = df['사망자수'] / df['환자수']<br>
 target = df.groupby('연도')['사망률'].idxmax().values<br>
 answer = round(df[df.index.isin(target)]['사망자수'].mean())<br>
 answer
-
 <br><br>
+
 >779
 </details>
 
@@ -1089,31 +1090,40 @@ print(np.exp(model.params[1:]))
 
 <details>  
 <summary>코드</summary>  
-from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu<br><br>
-male = df[df['성별'] == '남']['체중'].reset_index(drop=True)<br>
-female = df[df['성별'] == '여']['체중'].reset_index(drop=True)<br><br>
-male_stat, male_p = shapiro(male)<br>
-female_stat, female_p = shapiro(female)<br><br>
-if (male_p >= 0.05) & (female_p >= 0.05):<br>
-    print("두 집단이 정규성을 만족함")<br><br>
-    l_stat, l_p = levene(male, female)<br><br>
-    if l_p >= 0.05:<br>
-        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")<br>
-        t_stat, t_p = ttest_ind(male, female)<br>
-        print("검정통계량:", t_stat)<br>
-        print("pvalues:", t_p)<br>
-    else:<br>
-        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")<br>
-        t_stat, t_p = ttest_ind(male, female, equal_var=False)<br>
-        print("검정통계량:", t_stat)<br>
-        print("pvalues:", t_p)<br><br>
-else:<br>
-    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")<br>
-    u_stat, u_p = mannwhitneyu(male, female)<br>
-    print("검정통계량:", u_stat)<br>
-    print("pvalues:", u_p)
+	
+```python
+from scipy.stats import shapiro, levene, ttest_ind, mannwhitneyu
 
+male = df[df['성별'] == '남']['체중'].reset_index(drop=True)
+female = df[df['성별'] == '여']['체중'].reset_index(drop=True)
+
+male_stat, male_p = shapiro(male)
+female_stat, female_p = shapiro(female)
+
+if (male_p >= 0.05) & (female_p >= 0.05):
+    print("두 집단이 정규성을 만족함")
+
+    l_stat, l_p = levene(male, female)
+
+    if l_p >= 0.05:
+        print("두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함")
+        t_stat, t_p = ttest_ind(male, female)
+        print("검정통계량:", t_stat)
+        print("pvalues:", t_p)
+    else:
+        print("두 집단이 등분산성을 만족하지 않으므로 Welch's t-검정일 시행함")
+        t_stat, t_p = ttest_ind(male, female, equal_var=False)
+        print("검정통계량:", t_stat)
+        print("pvalues:", t_p)
+
+else:
+    print("두 집단 중 정규성을 만족하지 않은 집단이 있으므로 비모수 검정을 시행함")
+    u_stat, u_p = mannwhitneyu(male, female)
+    print("검정통계량:", u_stat)
+    print("pvalues:", u_p)
+```
 <br><br>
+
 > 두 집단이 정규성을 만족함<br>
 > 두 집단의 등분산성이 만족되므로 독립 t-검정을 시행함<br>
 > 검정통계량: 1.208913892570682<br>
@@ -1428,34 +1438,37 @@ Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을
 그리고 F-검정 통계량을 소수 셋째 자리까지 반올림하여 출력하시오.  
 </h3>  
 
-<details>  
-<summary>코드</summary> 
+<details>
+<summary>코드</summary>
+
 ```python
-import numpy as np<br> 
-from scipy.stats import f<br><br> 
-	
-group1 = df[df['Treatment'] == 'Control']['BloodPressure']<br> 
-group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']<br> 
-group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']<br><br> 
+import numpy as np
+from scipy.stats import f
 
-group2_var = np.var(group2, ddof=1)<br> 
-group3_var = np.var(group3, ddof=1)<br><br> 
+group1 = df[df['Treatment'] == 'Control']['BloodPressure']
+group2 = df[df['Treatment'] == 'DrugA']['BloodPressure']
+group3 = df[df['Treatment'] == 'DrugB']['BloodPressure']
 
-n2 = len(group2)<br> n3 = len(group3)<br><br> 
+group2_var = np.var(group2, ddof=1)
+group3_var = np.var(group3, ddof=1)
 
-if group2_var > group3_var:<br> 
-	f_stats = group2_var / group3_var<br> 
-	df2 = n2 - 1<br> 
-	df3 = n3 - 1<br> 
-	pvalue = f.sf(f_stats, df2, df3)<br> 
-else:<br> 
-	f_stats = group3_var / group2_var<br> 
-	df2 = n2 - 1<br> df3 = n3 - 1<br> 
-	pvalue = f.sf(f_stats, df3, df2)<br><br> 
-	
-print("F_statistics:", f_stats.round(3))<br> 
-print("p-value:", pvalue.round(3)) <br><br>
+n2 = len(group2)
+n3 = len(group3)
 
+if group2_var > group3_var:
+    f_stats = group2_var / group3_var
+    df2 = n2 - 1
+    df3 = n3 - 1
+    pvalue = f.sf(f_stats, df2, df3)
+else:
+    f_stats = group3_var / group2_var
+    df2 = n2 - 1
+    df3 = n3 - 1
+    pvalue = f.sf(f_stats, df3, df2)
+
+print("F_statistics:", f_stats.round(3))
+print("p-value:", pvalue.round(3))
+```
 
 >F_statistics: 1.946<br>
 >p-value: 0.012

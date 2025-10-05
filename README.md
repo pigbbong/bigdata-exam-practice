@@ -1429,6 +1429,7 @@ Control, DrugA, DrugB 그룹 중 두 그룹을 선택하여 분산이 큰 쪽을
 </h3>  
 
 <details>  
+``` python
 <summary>코드</summary>  
 import numpy as np<br>
 from scipy.stats import f<br><br>

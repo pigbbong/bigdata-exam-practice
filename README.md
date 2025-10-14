@@ -1345,9 +1345,9 @@ group2 = df[df['DietGroup'] == 'B']['Glucose']<br><br>
 stat1, p1 = shapiro(group1)<br>
 stat2, p2 = shapiro(group2)<br><br>
 if p1 >= 0.05 and p2 >= 0.05:<br>
-    print("두 집단의 정규성이 만족됨")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단의 정규성이 만족됨")<br>
 else:<br>
-    print("정규성을 만족하지 않는 집단이 있음")<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("정규성을 만족하지 않는 집단이 있음")<br><br>
 <span style="color:gray;"># 등분산성 검정</span><br>
 l_stat, l_p = levene(group1, group2)<br><br>
 if l_p >= 0.05:<br>

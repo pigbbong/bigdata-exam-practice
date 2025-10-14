@@ -851,9 +851,9 @@ chi2_stats, p, _, _ = chi2_contingency(cdf)<br>
 print("검정통계량:", chi2_stats)<br>
 print("p_values:", p)<br><br>
 if p < 0.05:<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 기각")<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 기각")<br>
 else:<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 채택")
+	&nbsp;&nbsp;&nbsp;&nbsp;print("귀무가설 채택")
 
 <br><br>
 
@@ -1168,7 +1168,7 @@ from scipy.stats import shapiro, levene, f_oneway<br><br>
 for group in df['학력수준'].unique():<br>
     stat, p = shapiro(df[df['학력수준'] == group]['직무만족도'])<br>
     print(f"[{group}] 정규성검정 p-value: {p}")<br><br>
-from scipy.stats import levene<br><br>
+
 groups = [df[df['학력수준'] == g]['직무만족도'] for g in df['학력수준'].unique()]<br>
 stat, p = levene(*groups)<br>
 print("등분산성 검정 p-value:", p)<br><br>
@@ -1227,9 +1227,9 @@ stat, p = shapiro(df['주당근무시간'])<br>
 print("statictis:", stat)<br>
 print("p-value:", p)<br><br>
 if p < 0.05:<br>
-    print("정규성 불만족")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("정규성 불만족")<br>
 else:<br>
-    print("정규성 만족")
+    &nbsp;&nbsp;&nbsp;&nbsp;print("정규성 만족")
 
 <br><br>
 >statictis: 0.9935192674208136<br>
@@ -1311,9 +1311,9 @@ from scipy.stats import shapiro<br><br>
 residuals = model.resid<br>
 stat, p = shapiro(residuals)<br><br>
 if p < 0.05:<br>
-    print("정규분포 불만족")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("정규분포 불만족")<br>
 else:<br>
-    print("정규분포 만족")<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("정규분포 만족")<br><br>
 print("statistics:", stat)<br>
 print("p-value:", p)
 
@@ -1351,9 +1351,9 @@ else:<br>
 <span style="color:gray;"># 등분산성 검정</span><br>
 l_stat, l_p = levene(group1, group2)<br><br>
 if l_p >= 0.05:<br>
-    print("두 집단의 등분산성을 이루고 있음")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단의 등분산성을 이루고 있음")<br>
 else:<br>
-    print("두 집단이 등분산성을 만족하지 않음")<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("두 집단이 등분산성을 만족하지 않음")<br><br>
 <span style="color:gray;"># 독립표본 t-검정 시행</span><br>
 t_stat, t_p = ttest_ind(group2, group1)<br><br>
 print(t_stat.round(3))
@@ -1496,11 +1496,11 @@ n2 = len(group2)<br><br>
 df1 = n1 - 1<br>
 df2 = n2 - 1<br><br>
 if group1_var > group2_var:<br>
-    f_stats = group1_var / group2_var<br>
-    pvalue = f.sf(f_stats, df1, df2)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;f_stats = group1_var / group2_var<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;pvalue = f.sf(f_stats, df1, df2)<br>
 else:<br>
-    f_stats = group2_var / group1_var<br>
-    pvalue = f.sf(f_stats, df2, df1)<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;f_stats = group2_var / group1_var<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;pvalue = f.sf(f_stats, df2, df1)<br><br>
 print("F-statistics:", f_stats.round(3))<br>
 print("pvalue:", pvalue.round(3))<br><br>
 <span style="color:gray;"># 합동 분산량 계산</span><br>
@@ -1537,14 +1537,14 @@ group2_var = np.var(group2, ddof=1)<br>
 group3_var = np.var(group3, ddof=1)<br><br>
 print("DrugB와 DrugA의 F검정통계량:", (group1_var / group2_var).round(3))<br><br>
 if group1_var / group2_var > 1.0:<br>
-    print("DrugB의 검정통계량이 DrugA보다 크다.", end='\n\n')<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("DrugB의 검정통계량이 DrugA보다 크다.", end='\n\n')<br>
 else:<br>
-    print("DrugB의 분산이 DrugA보다 작다.", end='\n\n')<br><br>
+    p&nbsp;&nbsp;&nbsp;&nbsp;rint("DrugB의 분산이 DrugA보다 작다.", end='\n\n')<br><br>
 print("DrugB와 Control의 F검정통계량:", (group1_var / group3_var).round(3))<br><br>
 if group1_var / group3_var > 1.0:<br>
-    print("DrugB의 검정통계량이 Control보다 크다.")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("DrugB의 검정통계량이 Control보다 크다.")<br>
 else:<br>
-    print("DrugB의 분산이 Control보다 작다.")<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("DrugB의 분산이 Control보다 작다.")<br>
 
 <br><br>
 >DrugB와 DrugA의 F검정통계량: 1.946<br>

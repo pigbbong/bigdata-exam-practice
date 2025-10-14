@@ -282,7 +282,7 @@ answer = grouped[(grouped['연도'] == 2023) & (grouped['구매금액'] >= targe
 
 print("조건에 맞는 고객들:")<br>
 for i in range(len(answer)):<br>
-&nbsp;&nbsp;print(answer[i])<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;print(answer[i])<br><br>
 
 print("\n조건에 맞는 고객 수:", len(answer))
 
@@ -354,7 +354,7 @@ target_col = ['혈압', '혈당', '콜레스테롤']<br>
 change_col_name = ['혈압_zscore', '혈당_zscore', '콜레스테롤_zscore']<br><br>
 
 for new_col, col in zip(change_col_name, target_col):<br>
-&nbsp;&nbsp;df[new_col] = zscore(df[col])<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;df[new_col] = zscore(df[col])<br><br>
 
 answer = len(df[df['혈압_zscore'] > 1.5])<br>
 answer

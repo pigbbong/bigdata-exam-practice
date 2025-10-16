@@ -1059,6 +1059,12 @@ print(result.head())<br>
 </details>
 
 <h2 style="font-weight:normal;">분류</h2>
+<h3 style="font-weight:normal;">1.</h3> 
+<h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: churn, 평가 지표: AUC)</h3> 
+
+</details>
+
+
 <h3 style="font-weight:normal;">2.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: default, 평가 지표: f1_score)</h3> 
 <details>
@@ -1129,13 +1135,6 @@ print(result.head())<br>
 <h3 style="font-weight:normal;">3.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: satisfaction, 평가 지표: recall)<br>
 그리고 평가 지표 점수가 0.95 이상이 나오게 모델을 학습하시오.</h3> 
-<details>
-<summary>코드</summary>
-
-</details>
-
-<h3 style="font-weight:normal;">3.</h3> 
-<h3 style="font-weight:normal;"></h3> 
 <details>
 <summary>코드</summary>
 import pandas as pd<br>

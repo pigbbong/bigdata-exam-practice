@@ -1062,6 +1062,9 @@ print(result.head())<br>
 <h3 style="font-weight:normal;">1.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: churn, 평가 지표: AUC)</h3> 
 
+<details>
+<summary>코드</summary>
+
 </details>
 
 

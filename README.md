@@ -825,7 +825,7 @@ answer3
 
 
 
-# 📝 1유형
+# 📝 2유형
 
 <details>
 <summary><h2>📌 문제 목록 보기</h2></summary>

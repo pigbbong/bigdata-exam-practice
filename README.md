@@ -911,10 +911,6 @@ from sklearn.impute import SimpleImputer<br>
 from sklearn.ensemble import RandomForestRegressor<br>
 from sklearn.metrics import mean_squared_error<br><br>
 
-<span style="color:gray;"># 데이터 불러오기</span><br>
-train = pd.read_csv('train_apartment.csv')<br>
-test = pd.read_csv('test_apartment.csv')<br><br>
-
 <span style="color:gray;"># 데이터 확인</span><br>
 <span style="color:gray;"># print(train.head(), "\n")</span><br>
 <span style="color:gray;"># print(train.info())</span><br>

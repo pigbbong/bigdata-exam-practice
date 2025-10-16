@@ -981,6 +981,102 @@ print(result.head())<br>
 </details>
 
 
+<h3 style="font-weight:normal;">3.</h3> 
+<h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: mpg, 평가 지표: MAE) (결측값은 0으로 나타냄) </h3>
+<details>
+<summary>코드</summary>
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.model_selection import train_test_split<br>
+from sklearn.preprocessing import OneHotEncoder<br>
+from sklearn.ensemble import RandomForestRegressor<br>
+from sklearn.metrics import mean_absolute_error<br><br>
+
+<span style="color:gray;"># 데이터 불러오기</span><br>
+train = pd.read_csv('train_fuel.csv')<br>
+test = pd.read_csv('test_fuel.csv')<br><br>
+
+<span style="color:gray;"># 데이터 확인</span><br>
+<span style="color:gray;"># print(train.head(), "\n")</span><br>
+<span style="color:gray;"># print(train.info())</span><br><br>
+
+<span style="color:gray;"># 결측치 있는 칼럼 확인</span><br>
+cols_with_zero = [col for col in train.columns if (train[col] == 0).any()]<br>
+print(cols_with_zero)<br><br>
+
+<span style="color:gray;"># 결측치(0값) 대치가 필요한 칼럼 리스트</span><br>
+cols_with_zero = ['engine_size', 'weight']<br><br>
+
+<span style="color:gray;"># 결측값 대치</span><br>
+for col in cols_with_zero:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;train[col] = train[col].apply(lambda x: train[col].median() if x == 0 else x)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;test[col] = test[col].apply(lambda x: test[col].median() if x == 0 else x)<br><br>
+
+<span style="color:gray;"># 종속변수와 독립변수 분리</span><br>
+train_X = train.drop(columns='mpg', axis=1)<br>
+train_y = train['mpg']<br>
+test_X = test.copy()<br><br>
+
+<span style="color:gray;"># test ID 추출</span><br>
+test_ID = test_X['ID']<br><br>
+
+<span style="color:gray;"># 필요 없는 칼럼 제거</span><br>
+drop_col = ['ID']<br>
+train_X = train_X.drop(columns=drop_col)<br><br>
+
+<span style="color:gray;"># 수치형, 범주형 변수 구분</span><br>
+num_columns = train_X.select_dtypes('number').columns.tolist()<br>
+cat_columns = train_X.select_dtypes('object').columns.tolist()<br><br>
+
+<span style="color:gray;"># 검증용 데이터 분할</span><br>
+train_X, valid_X, train_y, valid_y = train_test_split(train_X, train_y, test_size=0.2, random_state=42)<br><br>
+
+<span style="color:gray;"># 원-핫 인코딩</span><br>
+onehotencoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')<br><br>
+
+train_X_encoder = onehotencoder.fit_transform(train_X[cat_columns])<br>
+valid_X_encoder = onehotencoder.transform(valid_X[cat_columns])<br>
+test_X_encoder = onehotencoder.transform(test_X[cat_columns])<br><br>
+
+<span style="color:gray;"># 데이터 결합</span><br>
+train_X_preprocessed = np.concatenate([train_X_encoder, train_X[num_columns]], axis=1)<br>
+valid_X_preprocessed = np.concatenate([valid_X_encoder, valid_X[num_columns]], axis=1)<br>
+test_X_preprocessed = np.concatenate([test_X_encoder, test_X[num_columns]], axis=1)<br><br>
+
+<span style="color:gray;"># 랜덤포레스트 회귀모형 학습</span><br>
+rf = RandomForestRegressor(random_state=42)<br>
+rf.fit(train_X_preprocessed, train_y)<br><br>
+
+<span style="color:gray;"># 예측</span><br>
+train_predict = rf.predict(train_X_preprocessed)<br>
+valid_predict = rf.predict(valid_X_preprocessed)<br><br>
+
+<span style="color:gray;"># 성능 평가</span><br>
+train_rmse = mean_absolute_error(train_y, train_predict)<br>
+valid_rmse = mean_absolute_error(valid_y, valid_predict)<br><br>
+
+print("train RMSE:", round(train_rmse, 3))<br>
+print("valid RMSE:", round(valid_rmse, 3))<br><br>
+
+<span style="color:gray;"># 테스트 데이터 예측 및 제출 파일 생성</span><br>
+test_pred = rf.predict(test_X_preprocessed)<br>
+result = pd.DataFrame({'ID': test_ID, 'pred': test_pred})<br>
+result.to_csv('result.csv', index=False)<br>
+print(result.head())<br>
+</details>
+
+<h2 style="font-weight:normal;">분류</h2>
+<h3 style="font-weight:normal;">1.</h3> 
+<h3 style="font-weight:normal;"></h3> 
+
+
+<h3 style="font-weight:normal;">2.</h3> 
+<h3 style="font-weight:normal;"></h3> 
+
+
+<h3 style="font-weight:normal;">3.</h3> 
+<h3 style="font-weight:normal;"></h3> 
+
 </details>
 
 

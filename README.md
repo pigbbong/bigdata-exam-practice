@@ -1064,7 +1064,62 @@ print(result.head())<br>
 
 <details>
 <summary>코드</summary>
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.model_selection import train_test_split<br>
+from sklearn.preprocessing import OneHotEncoder<br>
+from sklearn.ensemble import RandomForestClassifier<br>
+from sklearn.metrics import roc_auc_score<br><br>
 
+<span style="color:gray;"># 데이터 확인</span><br>
+<span style="color:gray;"># print(train.head(), "\n")</span><br>
+<span style="color:gray;"># print(train.info())</span><br>
+<span style="color:gray;"># print(train['churn'].value_counts(), "\n")</span><br><br>
+
+<span style="color:gray;"># 종속변수와 독립변수 분리</span><br>
+train_X = train.drop(columns='churn', axis=1)<br>
+train_y = train['churn']<br>
+test_X = test.copy()<br><br>
+
+<span style="color:gray;"># 필요 없는 칼럼 제거</span><br>
+drop_col = ['ID']<br>
+train_X = train_X.drop(columns=drop_col)<br><br>
+
+<span style="color:gray;"># 수치형, 범주형 변수 구분</span><br>
+num_columns = train_X.select_dtypes('number').columns.tolist()<br>
+cat_columns = train_X.select_dtypes('object').columns.tolist()<br><br>
+
+<span style="color:gray;"># 검증용 데이터 분할</span><br>
+train_X, valid_X, train_y, valid_y = train_test_split(train_X, train_y, test_size=0.2, random_state=42)<br><br>
+
+<span style="color:gray;"># 원-핫 인코딩</span><br>
+onehotencoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')<br><br>
+
+train_X_encoder = onehotencoder.fit_transform(train_X[cat_columns])<br>
+valid_X_encoder = onehotencoder.transform(valid_X[cat_columns])<br>
+test_X_encoder = onehotencoder.transform(test_X[cat_columns])<br><br>
+
+<span style="color:gray;"># 데이터 결합</span><br>
+train_X_preprocessed = np.concatenate([train_X_encoder, train_X[num_columns]], axis=1)<br>
+valid_X_preprocessed = np.concatenate([valid_X_encoder, valid_X[num_columns]], axis=1)<br>
+test_X_preprocessed = np.concatenate([test_X_encoder, test_X[num_columns]], axis=1)<br><br>
+
+<span style="color:gray;"># 랜덤포레스트 분류모델 학습</span><br>
+rf = RandomForestClassifier(random_state=42)<br>
+rf.fit(train_X_preprocessed, train_y)<br><br>
+
+<span style="color:gray;"># 예측</span><br>
+valid_pred_proba = rf.predict_proba(valid_X_preprocessed)[:, 1]<br><br>
+
+<span style="color:gray;"># AUC 평가</span><br>
+auc = roc_auc_score(valid_y, valid_pred_proba)<br>
+print("Validation AUC:", round(auc, 3))<br><br>
+
+<span style="color:gray;"># 테스트 데이터 예측 및 제출 파일 생성</span><br>
+test_pred = rf.predict(test_X_preprocessed)<br>
+result = pd.DataFrame({'ID': test['ID'], 'pred': test_pred})<br>
+result.to_csv('result.csv', index=False)<br>
+print(result.head())<br>
 </details>
 
 

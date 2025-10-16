@@ -1059,8 +1059,8 @@ print(result.head())<br>
 <h3 style="font-weight:normal;">1.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: churn, 평가 지표: AUC)</h3> 
 
-train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/train_customer.csv")<br>
-test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/test_customer.csv")
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_customer.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_customer.csv")
 
 <details>
 <summary>코드</summary>

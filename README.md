@@ -833,6 +833,9 @@ answer3
 <h3 style="font-weight:normal;">1.</h3> 
 <h3 style="font-weight:normal;">1. 훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: salary, 평가 지표: RMSE)</h3>
 
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_employee.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_employee.csv")
+
 <details>
 <summary>코드</summary>
 import pandas as pd<br>
@@ -902,6 +905,10 @@ print(result.head())<br>
 
 <h3 style="font-weight:normal;">2.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: price, 평가 지표: RMSE)</h3>
+
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_apartment.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_apartment.csv")
+
 <details>
 <summary>코드</summary>
 import pandas as pd<br>
@@ -980,6 +987,10 @@ print(result.head())<br>
 
 <h3 style="font-weight:normal;">3.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: mpg, 평가 지표: MAE) (결측값은 0으로 나타냄) </h3>
+
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_fuel.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_fuel.csv")
+
 <details>
 <summary>코드</summary>
 import pandas as pd<br>

@@ -833,8 +833,6 @@ answer3
 <h3 style="font-weight:normal;">1.</h3> 
 <h3 style="font-weight:normal;">1. 훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: salary, 평가 지표: RMSE)</h3>
 
-<h3 style="font-weight:normal;">train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/train_customer.csv")<br>
-test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/test_customer.csv")</h3>
 <details>
 <summary>코드</summary>
 import pandas as pd<br>
@@ -1060,7 +1058,8 @@ print(result.head())<br>
 <h2 style="font-weight:normal;">분류</h2>
 <h3 style="font-weight:normal;">1.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: churn, 평가 지표: AUC)</h3> 
-
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/train_customer.csv")
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/2%EC%9C%A0%ED%98%95/test_customer.csv")
 <details>
 <summary>코드</summary>
 import pandas as pd<br>

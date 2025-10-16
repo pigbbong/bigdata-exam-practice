@@ -992,10 +992,6 @@ from sklearn.preprocessing import OneHotEncoder<br>
 from sklearn.ensemble import RandomForestRegressor<br>
 from sklearn.metrics import mean_absolute_error<br><br>
 
-<span style="color:gray;"># 데이터 불러오기</span><br>
-train = pd.read_csv('train_fuel.csv')<br>
-test = pd.read_csv('test_fuel.csv')<br><br>
-
 <span style="color:gray;"># 데이터 확인</span><br>
 <span style="color:gray;"># print(train.head(), "\n")</span><br>
 <span style="color:gray;"># print(train.info())</span><br><br>
@@ -1063,16 +1059,143 @@ print(result.head())<br>
 </details>
 
 <h2 style="font-weight:normal;">분류</h2>
-<h3 style="font-weight:normal;">1.</h3> 
-<h3 style="font-weight:normal;"></h3> 
-
-
 <h3 style="font-weight:normal;">2.</h3> 
-<h3 style="font-weight:normal;"></h3> 
+<h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: default, 평가 지표: f1_score)</h3> 
+<details>
+<summary>코드</summary>
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.model_selection import train_test_split<br>
+from sklearn.preprocessing import OneHotEncoder<br>
+from sklearn.ensemble import RandomForestClassifier<br>
+from sklearn.metrics import f1_score<br><br>
 
+<span style="color:gray;"># 데이터 확인</span><br>
+<span style="color:gray;"># print(train.head(), "\n")</span><br>
+<span style="color:gray;"># print(train.info())</span><br>
+<span style="color:gray;"># print(train.isna().sum())</span><br>
+<span style="color:gray;"># print(train['default'].value_counts(), "\n")</span><br><br>
+
+<span style="color:gray;"># default 그룹별로 결측값 대치</span><br>
+means = train.groupby('default')['credit_score'].mean()<br>
+train['credit_score'] = train.apply(lambda x: means[x['default']] if pd.isna(x['credit_score']) else x['credit_score'], axis=1)<br><br>
+
+<span style="color:gray;"># 종속변수와 독립변수 분리</span><br>
+train_X = train.drop(columns='default', axis=1)<br>
+train_y = train['default']<br>
+test_X = test.copy()<br><br>
+
+<span style="color:gray;"># 필요 없는 칼럼 제거</span><br>
+drop_col = ['ID']<br>
+train_X = train_X.drop(columns=drop_col)<br><br>
+
+<span style="color:gray;"># 수치형, 범주형 변수 구분</span><br>
+num_columns = train_X.select_dtypes('number').columns.tolist()<br>
+cat_columns = train_X.select_dtypes('object').columns.tolist()<br><br>
+
+<span style="color:gray;"># 검증용 데이터 분할</span><br>
+train_X, valid_X, train_y, valid_y = train_test_split(train_X, train_y, test_size=0.25, random_state=42)<br><br>
+
+<span style="color:gray;"># 원-핫 인코딩</span><br>
+onehotencoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')<br><br>
+
+train_X_encoder = onehotencoder.fit_transform(train_X[cat_columns])<br>
+valid_X_encoder = onehotencoder.transform(valid_X[cat_columns])<br>
+test_X_encoder = onehotencoder.transform(test_X[cat_columns])<br><br>
+
+<span style="color:gray;"># 데이터 결합</span><br>
+train_X_preprocessed = np.concatenate([train_X_encoder, train_X[num_columns]], axis=1)<br>
+valid_X_preprocessed = np.concatenate([valid_X_encoder, valid_X[num_columns]], axis=1)<br>
+test_X_preprocessed = np.concatenate([test_X_encoder, test_X[num_columns]], axis=1)<br><br>
+
+<span style="color:gray;"># 랜덤포레스트 분류모델 학습</span><br>
+rf = RandomForestClassifier(random_state=42)<br>
+rf.fit(train_X_preprocessed, train_y)<br><br>
+
+<span style="color:gray;"># 예측</span><br>
+valid_pred = rf.predict(valid_X_preprocessed)<br><br>
+
+<span style="color:gray;"># F1-score 평가</span><br>
+f1 = f1_score(valid_y, valid_pred, average='macro')<br>
+print("Validation F1-score:", round(f1, 3))<br><br>
+
+<span style="color:gray;"># 테스트 데이터 예측 및 제출 파일 생성</span><br>
+test_pred_proba = rf.predict_proba(test_X_preprocessed)[:, 1]<br>
+result = pd.DataFrame({'ID': test['ID'], 'pred_proba': test_pred_proba})<br>
+result.to_csv('result.csv', index=False)<br>
+print(result.head())<br>
+</details>
+
+<h3 style="font-weight:normal;">3.</h3> 
+<h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: satisfaction, 평가 지표: recall)<br>
+그리고 평가 지표 점수가 0.95 이상이 나오게 모델을 학습하시오.</h3> 
+<details>
+<summary>코드</summary>
+
+</details>
 
 <h3 style="font-weight:normal;">3.</h3> 
 <h3 style="font-weight:normal;"></h3> 
+<details>
+<summary>코드</summary>
+import pandas as pd<br>
+import numpy as np<br>
+from sklearn.model_selection import train_test_split<br>
+from sklearn.preprocessing import OneHotEncoder<br>
+from sklearn.ensemble import RandomForestClassifier<br>
+from sklearn.metrics import recall_score<br><br>
+
+<span style="color:gray;"># 데이터 확인</span><br>
+<span style="color:gray;"># print(train.head(), "\n")</span><br>
+<span style="color:gray;"># print(train.info())</span><br>
+<span style="color:gray;"># print(train.isna().sum())</span><br>
+<span style="color:gray;"># print(train['satisfaction'].value_counts(), "\n")</span><br><br>
+
+<span style="color:gray;"># 종속변수와 독립변수 분리</span><br>
+train_X = train.drop(columns='satisfaction', axis=1)<br>
+train_y = train['satisfaction']<br>
+test_X = test.copy()<br><br>
+
+<span style="color:gray;"># 필요 없는 칼럼 제거</span><br>
+drop_col = ['ID']<br>
+train_X = train_X.drop(columns=drop_col)<br><br>
+
+<span style="color:gray;"># 수치형, 범주형 변수 구분</span><br>
+num_columns = train_X.select_dtypes('number').columns.tolist()<br>
+cat_columns = train_X.select_dtypes('object').columns.tolist()<br><br>
+
+<span style="color:gray;"># 검증용 데이터 분할 (층화 적용)</span><br>
+train_X, valid_X, train_y, valid_y = train_test_split(train_X, train_y, test_size=0.2, random_state=42, stratify=train_y)<br><br>
+
+<span style="color:gray;"># 원-핫 인코딩</span><br>
+onehotencoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')<br><br>
+
+train_X_encoder = onehotencoder.fit_transform(train_X[cat_columns])<br>
+valid_X_encoder = onehotencoder.transform(valid_X[cat_columns])<br>
+test_X_encoder = onehotencoder.transform(test_X[cat_columns])<br><br>
+
+<span style="color:gray;"># 데이터 결합</span><br>
+train_X_preprocessed = np.concatenate([train_X_encoder, train_X[num_columns]], axis=1)<br>
+valid_X_preprocessed = np.concatenate([valid_X_encoder, valid_X[num_columns]], axis=1)<br>
+test_X_preprocessed = np.concatenate([test_X_encoder, test_X[num_columns]], axis=1)<br><br>
+
+<span style="color:gray;"># 랜덤포레스트 분류모델 학습</span><br>
+rf = RandomForestClassifier(random_state=42)<br>
+rf.fit(train_X_preprocessed, train_y)<br><br>
+
+<span style="color:gray;"># 예측</span><br>
+valid_pred = rf.predict(valid_X_preprocessed)<br><br>
+
+<span style="color:gray;"># Recall 평가</span><br>
+recall = recall_score(valid_y, valid_pred, average='macro')<br>
+print("Recall:", round(recall, 3))<br><br>
+
+<span style="color:gray;"># 테스트 데이터 예측 및 제출 파일 생성</span><br>
+test_pred = rf.predict(test_X_preprocessed)<br>
+result = pd.DataFrame({'ID': test['ID'], 'pred': test_pred})<br>
+result.to_csv('result.csv', index=False)<br>
+print(result.head())<br>
+</details>
 
 </details>
 

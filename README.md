@@ -1125,6 +1125,10 @@ print(result.head())<br>
 
 <h3 style="font-weight:normal;">2.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: default, 평가 지표: f1_score)</h3> 
+
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_credit.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_credit.csv")
+
 <details>
 <summary>코드</summary>
 import pandas as pd<br>
@@ -1193,6 +1197,10 @@ print(result.head())<br>
 <h3 style="font-weight:normal;">3.</h3> 
 <h3 style="font-weight:normal;">훈련 데이터로 학습한 모델을 테스트 데이터에 적용하여 예측한 결과를 제출하시오. (Target: satisfaction, 평가 지표: recall)<br>
 그리고 평가 지표 점수가 0.95 이상이 나오게 모델을 학습하시오.</h3> 
+
+train = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/train_satisfaction.csv")<br>
+test = pd.read_csv("https://raw.githubusercontent.com/pigbbong/bigdata-exam-practice/main/type2/test_satisfaction.csv")
+
 <details>
 <summary>코드</summary>
 import pandas as pd<br>

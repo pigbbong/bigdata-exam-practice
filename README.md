@@ -1004,9 +1004,6 @@ test = pd.read_csv('test_fuel.csv')<br><br>
 cols_with_zero = [col for col in train.columns if (train[col] == 0).any()]<br>
 print(cols_with_zero)<br><br>
 
-<span style="color:gray;"># 결측치(0값) 대치가 필요한 칼럼 리스트</span><br>
-cols_with_zero = ['engine_size', 'weight']<br><br>
-
 <span style="color:gray;"># 결측값 대치</span><br>
 for col in cols_with_zero:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;train[col] = train[col].apply(lambda x: train[col].median() if x == 0 else x)<br>

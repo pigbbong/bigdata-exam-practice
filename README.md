@@ -44,8 +44,8 @@ answer
 <details>
 <summary>코드</summary>
 ```plaintext
-target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]<br>
-answer = target['의료비'].mean()<br>
+target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['연령'] >= 60)]
+answer = target['의료비'].mean()
 answer
 ```
 <br><br>

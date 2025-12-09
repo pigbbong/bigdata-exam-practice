@@ -47,6 +47,7 @@ target = df[(df['거주지'] == '도시') & (df['성별'] == '남성') & (df['�
 answer = target['의료비'].mean()
 answer
 <br><br>
+
 >560229.24
 </details>
 
